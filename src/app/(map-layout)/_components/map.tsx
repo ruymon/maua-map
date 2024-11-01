@@ -53,7 +53,7 @@ export function MapProvider({ children, mapContainerRef }: MapProviderProps) {
     return () => {
       if (map) map.remove();
     };
-  }, []);
+  }, []); // eslint-disable-line
 
   if (!isMapReady) return null;
 
