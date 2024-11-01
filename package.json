@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write --ignore-unknown ."
+    "format": "prettier --write --ignore-unknown .",
+    "prepare": "husky && husky install"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.1",
@@ -21,6 +22,8 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "geolib": "^3.3.4",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
     "lucide-react": "^0.454.0",
     "mapbox-gl": "^3.7.0",
     "nanoid": "^5.0.8",
@@ -51,5 +54,16 @@
   },
   "overrides": {
     "react-is": "^19.0.0-rc-02c0e824-20241028"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*": [
+      "npm run format",
+      "npm run lint"
+    ]
   }
 }
