@@ -40,7 +40,6 @@
     "eslint": "^8",
     "eslint-config-next": "15.0.2",
     "husky": "^9.1.6",
-    "lint-staged": "^15.2.10",
     "postcss": "^8",
     "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.8",
@@ -51,20 +50,9 @@
     "arrowParens": "always",
     "semi": true,
     "trailingComma": "all",
-    "doubleQuote": true
+    "singleQuote": false
   },
   "overrides": {
     "react-is": "^19.0.0-rc-02c0e824-20241028"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "src/**/*": [
-      "npm run format",
-      "npm run lint:fix"
-    ]
   }
 }
