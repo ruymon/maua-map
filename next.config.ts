@@ -9,14 +9,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  // devIndicators: {
-  //   buildActivity: false,
-  //   appIsrStatus: false,
-  // },
-  experimental: {
-    dynamicIO: true,
-    serverComponentsHmrCache: false,
-  },
 };
 
 export default nextConfig;
