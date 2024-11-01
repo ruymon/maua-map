@@ -1,36 +1,20 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Mauá Map Tracker
 
-## Getting Started
+A simple Next.js webapp to help users locate themselves around campus.
 
-First, run the development server:
+Learn more about the new features being used:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- [`dynamicIO`](https://nextjs.org/docs/canary/app/api-reference/next-config-js/dynamicIO)
+- [`use cache`](https://nextjs.org/docs/canary/app/api-reference/directives/use-cache)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Getting started
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Run `npm i` followed by `npm run dev` to install the dependencies and start the development server.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. Add your API keys to the `.env` file.
 
-## Learn More
+- `NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN`: The map is generated using [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js/api/).
 
-To learn more about Next.js, take a look at the following resources:
+3. Navigate to [http://localhost:3000/](http://localhost:3000/) to see the app in action.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+> We recommend leaving the [`serverComponentsHRMcache` config option](https://nextjs.org/docs/app/api-reference/next-config-js/serverComponentsHmrCache) enabled while developing to reduce API calls between saves. However, we disabled it during the keynote to allow us to refetch data across Fast Refresh.
