@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-function-type */
-import { nanoid } from 'nanoid';
+import { nanoid } from "nanoid";
 
 export interface Subscribable<T extends Function = () => void> {
   addCallback: (callback: T, id?: string) => string;
@@ -23,7 +23,7 @@ export const subscribable = <
   };
 
   const removeCallback = (id: string | Function): void => {
-    if (typeof id === 'function') {
+    if (typeof id === "function") {
       const key = Object.keys(callbacks).find((k) => callbacks[k] === id);
       if (key) delete callbacks[key];
       return;

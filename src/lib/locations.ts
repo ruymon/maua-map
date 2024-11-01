@@ -1,10 +1,10 @@
 export async function getLocations() {
-  const url = 'http://localhost:3000/locations.json';
+  const url = "http://localhost:3000/locations.json";
 
   const options: RequestInit = {
-    method: 'GET',
+    method: "GET",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   };
 
@@ -12,7 +12,7 @@ export async function getLocations() {
   const data = await result.json();
 
   if (!result.ok) {
-    throw new Error('Error fetching direction details:', data);
+    throw new Error("Error fetching direction details:", data);
   }
 
   return data;
