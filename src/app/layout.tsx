@@ -1,3 +1,5 @@
+import { ClientProviders } from "@/app/client-providers";
+import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -24,11 +26,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}
+        className={cn(
+          geistSans.variable,
+          geistMono.variable,
+          "antialiased min-h-dvh bg-background text-foreground",
+        )}
       >
-        {children}
+        <ClientProviders>{children}</ClientProviders>
       </body>
     </html>
   );

@@ -27,13 +27,14 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { useTheme } from "next-themes";
 import Link from "next/link";
 
 const data = {
   user: {
     name: "shadcn",
     email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
+    avatar: "https://www.github.com/ruymon.png",
   },
   navMain: [
     {
@@ -154,6 +155,11 @@ const data = {
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { setTheme, theme } = useTheme();
+  const handleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
+
   return (
     <Sidebar variant="inset" {...props}>
       <SidebarHeader>
@@ -182,6 +188,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />
+        <SidebarMenuButton onClick={handleTheme}>Theme</SidebarMenuButton>
       </SidebarFooter>
     </Sidebar>
   );
