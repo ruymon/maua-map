@@ -1,8 +1,10 @@
 "use client";
 
-import { MAP_STYLE, MAPBOX_ACCESS_TOKEN } from "@/config/map";
+import { MAP_STYLES, MAPBOX_ACCESS_TOKEN } from "@/config/map";
 import { useMapViewStateStore } from "@/stores/map-view-state-store";
+import { ResolvedTheme } from "@/types/themes";
 import { DeckGL } from "deck.gl";
+import { useTheme } from "next-themes";
 import { useState } from "react";
 import BaseMap from "react-map-gl";
 import { MapSkeleton } from "./map-skeleton";
@@ -12,6 +14,7 @@ if (!MAPBOX_ACCESS_TOKEN)
 
 export function Map() {
   const [isMapLoading, setIsMapLoading] = useState(true);
+  const { resolvedTheme } = useTheme();
   const { viewState } = useMapViewStateStore();
 
   // const mapLayers = [];
@@ -39,7 +42,7 @@ export function Map() {
         <BaseMap
           attributionControl={false}
           reuseMaps={true}
-          mapStyle={MAP_STYLE}
+          mapStyle={MAP_STYLES[resolvedTheme as ResolvedTheme]}
           antialias={true}
           mapboxAccessToken={MAPBOX_ACCESS_TOKEN}
           onLoad={() => setIsMapLoading(false)}
