@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b0382eef-b487-4b2d-a8e5-eb02ffca8ef1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/services/activities.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/events.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(map-layout)/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(map-layout)/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/events.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/events.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/events.ts" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +41,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "feat/events-crud",
+    "git-widget-placeholder": "development",
     "last_opened_file_path": "D:/Users/aless/WebstormProjects/maua-map",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -75,7 +76,8 @@
       <workItem from="1730502079359" duration="811000" />
       <workItem from="1730601709950" duration="16000" />
       <workItem from="1730601730621" duration="314000" />
-      <workItem from="1730804425750" duration="5285000" />
+      <workItem from="1730804425750" duration="6091000" />
+      <workItem from="1730811196669" duration="1628000" />
     </task>
     <servers />
   </component>
