@@ -1,4 +1,9 @@
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import {
+  SidebarInset,
+  SidebarProvider,
+  SidebarTrigger,
+} from "@/components/ui/sidebar";
+import { SidebarIcon } from "lucide-react";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { AppSidebar } from "./_components/app-sidebar";
 import { Map } from "./_components/map";
@@ -15,9 +20,13 @@ export default function MapLayout({
   return (
     <SidebarProvider style={sidebarStyle}>
       <AppSidebar />
-      <SidebarInset className="overflow-clip">
+      <SidebarInset className="h-svh">
         {children}
-        <Map />
+        <Map>
+          <SidebarTrigger className="absolute left-4 top-4">
+            <SidebarIcon />
+          </SidebarTrigger>
+        </Map>
       </SidebarInset>
     </SidebarProvider>
   );
