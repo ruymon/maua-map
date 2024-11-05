@@ -7,5 +7,9 @@ interface EventsPanelLayoutProps {
 export default function EventsPanelLayout({
   children,
 }: EventsPanelLayoutProps) {
-  return <main className="flex-1 max-w-lg flex p-4">{children}</main>;
+  return (
+    <main className="flex-1 flex-col gap-8 overflow-y-auto flex p-4 max-w-lg relative">
+      {children}
+    </main>
+  );
 }

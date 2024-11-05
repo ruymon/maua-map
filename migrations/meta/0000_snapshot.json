@@ -1,11 +1,11 @@
 {
-  "id": "e620fd33-7b10-4365-8cc6-3be890d5a614",
+  "id": "d0a95732-3163-4084-9f36-3d33ce9cac81",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
-    "public.event_activities_table": {
-      "name": "event_activities_table",
+    "public.event_activities": {
+      "name": "event_activities",
       "schema": "",
       "columns": {
         "id": {
@@ -23,43 +23,60 @@
         },
         "name": {
           "name": "name",
-          "type": "varchar(75)",
+          "type": "text",
           "primaryKey": false,
           "notNull": true
         },
         "description": {
           "name": "description",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "schedule": {
-          "name": "schedule",
-          "type": "timestamp[]",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "roomCode": {
-          "name": "roomCode",
-          "type": "varchar(25)",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "iconUrl": {
-          "name": "iconUrl",
           "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "startTime": {
+          "name": "startTime",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "endTime": {
+          "name": "endTime",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "roomId": {
+          "name": "roomId",
+          "type": "uuid",
           "primaryKey": false,
           "notNull": false
         }
       },
       "indexes": {},
       "foreignKeys": {
-        "event_activities_table_eventId_events_table_id_fk": {
-          "name": "event_activities_table_eventId_events_table_id_fk",
-          "tableFrom": "event_activities_table",
-          "tableTo": "events_table",
-          "columnsFrom": ["eventId"],
-          "columnsTo": ["id"],
+        "event_activities_eventId_events_id_fk": {
+          "name": "event_activities_eventId_events_id_fk",
+          "tableFrom": "event_activities",
+          "tableTo": "events",
+          "columnsFrom": [
+            "eventId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "event_activities_roomId_rooms_id_fk": {
+          "name": "event_activities_roomId_rooms_id_fk",
+          "tableFrom": "event_activities",
+          "tableTo": "rooms",
+          "columnsFrom": [
+            "roomId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -70,8 +87,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.events_table": {
-      "name": "events_table",
+    "public.events": {
+      "name": "events",
       "schema": "",
       "columns": {
         "id": {
@@ -83,24 +100,24 @@
         },
         "name": {
           "name": "name",
-          "type": "varchar(75)",
+          "type": "text",
           "primaryKey": false,
           "notNull": true
         },
         "description": {
           "name": "description",
-          "type": "varchar",
+          "type": "text",
           "primaryKey": false,
           "notNull": true
         },
-        "eventStartTime": {
-          "name": "eventStartTime",
+        "startTime": {
+          "name": "startTime",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true
         },
-        "eventEndTime": {
-          "name": "eventEndTime",
+        "endTime": {
+          "name": "endTime",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true
@@ -108,6 +125,56 @@
         "bannerUrl": {
           "name": "bannerUrl",
           "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.rooms": {
+      "name": "rooms",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "code": {
+          "name": "code",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "building": {
+          "name": "building",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "floor": {
+          "name": "floor",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "coordinates": {
+          "name": "coordinates",
+          "type": "point",
           "primaryKey": false,
           "notNull": true
         }
