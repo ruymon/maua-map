@@ -58,12 +58,8 @@
           "name": "event_activities_table_eventId_events_table_id_fk",
           "tableFrom": "event_activities_table",
           "tableTo": "events_table",
-          "columnsFrom": [
-            "eventId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["eventId"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
