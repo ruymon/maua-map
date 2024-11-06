@@ -1,18 +1,33 @@
-import { getAllEvents } from "@/services/events";
+import { notFound } from "next/navigation";
 
-export default async function EventsPage() {
-  const data = await getAllEvents();
+interface EventDetailsPageProps {
+  params: {
+    eventId: string;
+  };
+}
+
+export default async function EventDetailsPage({
+  params: { eventId },
+}: EventDetailsPageProps) {
+  if (!eventId) {
+    notFound();
+  }
+
+
+  if (!event) {
+    notFound();
+  }
 
   return (
     <>
-      <header className="flex flex-col">
-        <h1 className="text-primary text-3xl font-extrabold">Eventos</h1>
+      {/* <BannerBlurBackdrop bannerUrl={event.bannerUrl} />
+      <header className="flex flex-col z-10">
+        <h1 className="text-primary text-3xl font-extrabold">{event.name}</h1>
         <span className="text-muted-foreground text-sm">
-          Fique por dentro dos próximos eventos
+          {event.description}
         </span>
       </header>
-      {JSON.stringify(data, null, 2)}
-      <div className="flex flex-col gap-8 w-full">
+      <div className="flex flex-col gap-8 w-full z-10">
         <div className="h-24 rounded bg-muted" />
         <div className="h-24 rounded bg-muted" />
         <div className="h-24 rounded bg-muted" />
@@ -24,7 +39,7 @@ export default async function EventsPage() {
         <div className="h-24 rounded bg-muted" />
         <div className="h-24 rounded bg-muted" />
         <div className="h-24 rounded bg-muted" />
-      </div>
+      </div> */}
     </>
   );
 }
