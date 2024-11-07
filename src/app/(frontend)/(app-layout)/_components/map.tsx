@@ -5,14 +5,19 @@ import { useMapViewStateStore } from "@/stores/map-view-state-store";
 import { ResolvedTheme } from "@/types/themes";
 import { DeckGL } from "deck.gl";
 import { useTheme } from "next-themes";
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import BaseMap from "react-map-gl";
 import { MapSkeleton } from "./map-skeleton";
 
-if (!MAPBOX_ACCESS_TOKEN)
+if (!MAPBOX_ACCESS_TOKEN) {
   throw new Error("NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN is not set");
+}
 
-export function Map() {
+interface MapProps {
+  children?: ReactNode;
+}
+
+export function Map({ children }: MapProps) {
   const [isMapLoading, setIsMapLoading] = useState(true);
   const { resolvedTheme } = useTheme();
   const { viewState } = useMapViewStateStore();
@@ -47,7 +52,7 @@ export function Map() {
           mapboxAccessToken={MAPBOX_ACCESS_TOKEN}
           onLoad={() => setIsMapLoading(false)}
         />
-        {/* {children} */}
+        {children}
       </DeckGL>
     </figure>
   );
