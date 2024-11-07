@@ -5,9 +5,9 @@ import { notFound } from "next/navigation";
 import { BannerBlurBackdrop } from "./_components/banner-blur-backdrop";
 
 interface EventDetailsPageProps {
-  params: {
+  params: Promise<{
     eventId: string;
-  };
+  }>;
 }
 
 export default async function EventDetailsPage({
@@ -31,7 +31,7 @@ export default async function EventDetailsPage({
     limit: 1,
   });
 
-  const event = data.docs;
+  const event = data.docs[0];
 
   if (!event) {
     notFound();
