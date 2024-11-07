@@ -18,7 +18,7 @@ export default buildConfig({
   ],
   secret: process.env.PAYLOAD_SECRET || "",
   db: vercelPostgresAdapter({
-    idType: 'uuid'
+    idType: "uuid",
   }),
   i18n: {
     supportedLanguages: {
