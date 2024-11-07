@@ -1,59 +1,58 @@
-
-import { CollectionConfig } from 'payload'
+import { CollectionConfig } from "payload";
 
 export const RoomsCollection: CollectionConfig = {
-  slug: 'rooms',
+  slug: "rooms",
   labels: {
     singular: {
-      pt: 'Sala',
+      pt: "Sala",
     },
     plural: {
-      pt: 'Salas',
+      pt: "Salas",
     },
   },
   admin: {
-    useAsTitle: 'code',
+    useAsTitle: "name",
   },
   fields: [
     {
-      name: 'name',
+      name: "name",
       label: {
-        pt: 'Nome',
+        pt: "Nome",
       },
-      type: 'text',
+      type: "text",
       required: true,
     },
     {
-      name: 'code',
+      name: "code",
       label: {
-        pt: 'Código da Sala',	
+        pt: "Código da Sala",
       },
-      type: 'text',
+      type: "text",
       required: true,
     },
     {
-      name: 'building',
+      name: "building",
       label: {
-        pt: 'Bloco',	
+        pt: "Bloco",
       },
-      type: 'text',
+      type: "text",
       required: true,
     },
     {
-      name: 'floor',
+      name: "floor",
       label: {
-        pt: 'Andar',	
+        pt: "Andar",
       },
-      type: 'text',
+      type: "text",
       required: true,
     },
     {
-    name: 'coordinates',
-    label: {
-      pt: 'Coordenadas',
+      name: "coordinates",
+      label: {
+        pt: "Coordenadas",
+      },
+      type: "point",
+      required: true,
     },
-    type: 'point',
-    required: true,
-  }
   ],
-}
+};

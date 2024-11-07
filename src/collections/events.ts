@@ -7,34 +7,24 @@ export const EventsCollection: CollectionConfig = {
   },
   labels: {
     singular: {
-      pt: 'Evento',
+      pt: "Evento",
     },
     plural: {
-      pt: 'Eventos',
+      pt: "Eventos",
     },
   },
   fields: [
     {
       name: "name",
       label: {
-        pt: "Nome",
+        pt: "Nome do evento",
       },
       type: "text",
     },
-    // {
-    //   name: 'slug',
-    //   type: 'text',
-    //   hooks: {
-    //     beforeChange: [formatSlug],
-    //   },
-    //   admin: {
-    //     readOnly: true,
-    //   },
-    // },
     {
       name: "banner",
       label: {
-        pt: "Banner",
+        pt: "Banner do evento",
       },
       type: "upload",
       relationTo: "media",
@@ -52,6 +42,11 @@ export const EventsCollection: CollectionConfig = {
         pt: "Hora de início",
       },
       type: "date",
+      admin: {
+        date: {
+          pickerAppearance: "dayAndTime",
+        },
+      },
     },
     {
       name: "endTime",
@@ -59,6 +54,74 @@ export const EventsCollection: CollectionConfig = {
         pt: "Hora de término",
       },
       type: "date",
+      admin: {
+        date: {
+          pickerAppearance: "dayAndTime",
+        },
+      },
+    },
+    {
+      name: "activities",
+      type: "array",
+      label: {
+        pt: "Atividades do evento",
+      },
+      labels: {
+        singular: {
+          pt: "Atividade",
+        },
+        plural: {
+          pt: "Atividades",
+        },
+      },
+      fields: [
+        {
+          name: "name",
+          type: "text",
+          label: {
+            pt: "Nome da atividade",
+          },
+        },
+        {
+          name: "description",
+          type: "textarea",
+          label: {
+            pt: "Descrição",
+          },
+        },
+        {
+          name: "room",
+          label: {
+            pt: "Sala",
+          },
+          type: "relationship",
+          relationTo: "rooms",
+        },
+        {
+          name: "startTime",
+          type: "date",
+          label: {
+            pt: "Hora de início",
+          },
+          admin: {
+            date: {
+              pickerAppearance: "dayAndTime",
+            },
+          },
+        },
+        {
+          name: "endTime",
+          type: "date",
+          label: {
+            pt: "Hora de término",
+          },
+          admin: {
+            date: {
+              pickerAppearance: "dayAndTime",
+            },
+          },
+        },
+      ],
     },
   ],
 };

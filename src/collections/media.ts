@@ -5,10 +5,10 @@ export const MediaCollection: CollectionConfig = {
   upload: true,
   labels: {
     singular: {
-      pt: 'Mídia',
+      pt: "Mídia",
     },
     plural: {
-      pt: 'Mídias',
+      pt: "Mídias",
     },
   },
   fields: [

@@ -4,10 +4,10 @@ export const UsersCollection: CollectionConfig = {
   slug: "users",
   labels: {
     singular: {
-      pt: 'Usuário',
+      pt: "Usuário",
     },
     plural: {
-      pt: 'Usuários',
+      pt: "Usuários",
     },
   },
   auth: true,
