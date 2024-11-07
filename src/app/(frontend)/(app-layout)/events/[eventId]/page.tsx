@@ -21,32 +21,30 @@ export default async function EventDetailsPage({
 
   const payload = await getPayloadHMR({ config });
 
-  const { docs: data } = await payload.find({
+  const data = await payload.find({
     collection: "events",
-    depth: 3,
     where: {
       id: {
         equals: eventId,
       },
     },
+    limit: 1,
   });
 
-  const eventData = data[0];
+  const event = data.docs;
 
-  if (!eventData) {
+  if (!event) {
     notFound();
   }
 
   return (
     <>
-      <BannerBlurBackdrop banner={eventData.banner as Media} />
+      <BannerBlurBackdrop banner={event.banner as Media} />
       <pre>{JSON.stringify(data, null, 2)}</pre>
       <header className="flex flex-col z-10">
-        <h1 className="text-primary text-3xl font-extrabold">
-          {eventData.name}
-        </h1>
+        <h1 className="text-primary text-3xl font-extrabold">{event.name}</h1>
         <span className="text-muted-foreground text-sm">
-          {eventData.description}
+          {event.description}
         </span>
       </header>
       <div className="flex flex-col gap-8 w-full z-10">

@@ -8,7 +8,6 @@ export default async function EventsListPage() {
 
   const data = await payload.find({
     collection: "events",
-    depth: 1,
   });
 
   const events = data.docs;
