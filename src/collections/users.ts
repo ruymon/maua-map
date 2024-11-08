@@ -1,3 +1,4 @@
+import { isAdmin } from "@/lib/auth";
 import { CollectionConfig } from "payload";
 
 export const UsersCollection: CollectionConfig = {
@@ -10,10 +11,30 @@ export const UsersCollection: CollectionConfig = {
       pt: "Usuários",
     },
   },
-  auth: true,
-  access: {
-    delete: () => false,
-    update: () => false,
+  admin: {
+    hidden: ({ user }) => {
+      return user && user.role === "user";
+    },
   },
-  fields: [],
+  auth: {
+    loginWithUsername: true,
+  },
+  access: {
+    create: isAdmin,
+    update: isAdmin,
+  },
+  fields: [
+    {
+      name: "role",
+      label: {
+        pt: "Nível de acesso",
+      },
+      type: "select",
+      options: [
+        { label: "Administrador", value: "admin" },
+        { label: "Usuário", value: "user" },
+      ],
+      defaultValue: "user",
+    },
+  ],
 };
