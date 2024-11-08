@@ -26,11 +26,7 @@ export default buildConfig({
     },
   },
   admin: {
-    // autoLogin: {
-    //   email: "dev@payloadcms.com",
-    //   password: "test",
-    //   prefillOnly: true,
-    // },
+    user: "users",
     // components: {
     //   graphics: {
     //     Icon,
@@ -43,21 +39,5 @@ export default buildConfig({
       titleSuffix: "- Mauá Map",
     },
   },
-  // async onInit(payload) {
-  //   const existingUsers = await payload.find({
-  //     collection: "users",
-  //     limit: 1,
-  //   });
-
-  //   if (existingUsers.docs.length === 0) {
-  //     await payload.create({
-  //       collection: "users",
-  //       data: {
-  //         email: "dev@payloadcms.com",
-  //         password: "test",
-  //       },
-  //     });
-  //   }
-  // },
   sharp,
 });
