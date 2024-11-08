@@ -65,6 +65,7 @@ export interface UserAuthOperations {
 export interface Media {
   id: string;
   description?: string | null;
+  _key?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -209,6 +210,7 @@ export interface PayloadMigration {
  */
 export interface MediaSelect<T extends boolean = true> {
   description?: T;
+  _key?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
