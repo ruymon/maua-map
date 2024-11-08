@@ -15,18 +15,24 @@ export interface Config {
     events: Event;
     users: User;
     rooms: Room;
-    'payload-locked-documents': PayloadLockedDocument;
-    'payload-preferences': PayloadPreference;
-    'payload-migrations': PayloadMigration;
+    "payload-locked-documents": PayloadLockedDocument;
+    "payload-preferences": PayloadPreference;
+    "payload-migrations": PayloadMigration;
   };
   collectionsSelect: {
     media: MediaSelect<false> | MediaSelect<true>;
     events: EventsSelect<false> | EventsSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     rooms: RoomsSelect<false> | RoomsSelect<true>;
-    'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
-    'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
-    'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
+    "payload-locked-documents":
+      | PayloadLockedDocumentsSelect<false>
+      | PayloadLockedDocumentsSelect<true>;
+    "payload-preferences":
+      | PayloadPreferencesSelect<false>
+      | PayloadPreferencesSelect<true>;
+    "payload-migrations":
+      | PayloadMigrationsSelect<false>
+      | PayloadMigrationsSelect<true>;
   };
   db: {
     defaultIDType: string;
@@ -35,7 +41,7 @@ export interface Config {
   globalsSelect: {};
   locale: null;
   user: User & {
-    collection: 'users';
+    collection: "users";
   };
   jobs?: {
     tasks: unknown;
@@ -65,6 +71,7 @@ export interface UserAuthOperations {
 export interface Media {
   id: string;
   description?: string | null;
+  _key?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -125,7 +132,7 @@ export interface Room {
  */
 export interface User {
   id: string;
-  role?: ('admin' | 'user') | null;
+  role?: ("admin" | "user") | null;
   updatedAt: string;
   createdAt: string;
   email?: string | null;
@@ -146,24 +153,24 @@ export interface PayloadLockedDocument {
   id: string;
   document?:
     | ({
-        relationTo: 'media';
+        relationTo: "media";
         value: string | Media;
       } | null)
     | ({
-        relationTo: 'events';
+        relationTo: "events";
         value: string | Event;
       } | null)
     | ({
-        relationTo: 'users';
+        relationTo: "users";
         value: string | User;
       } | null)
     | ({
-        relationTo: 'rooms';
+        relationTo: "rooms";
         value: string | Room;
       } | null);
   globalSlug?: string | null;
   user: {
-    relationTo: 'users';
+    relationTo: "users";
     value: string | User;
   };
   updatedAt: string;
@@ -176,7 +183,7 @@ export interface PayloadLockedDocument {
 export interface PayloadPreference {
   id: string;
   user: {
-    relationTo: 'users';
+    relationTo: "users";
     value: string | User;
   };
   key?: string | null;
@@ -209,6 +216,7 @@ export interface PayloadMigration {
  */
 export interface MediaSelect<T extends boolean = true> {
   description?: T;
+  _key?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -314,7 +322,6 @@ export interface Auth {
   [k: string]: unknown;
 }
 
-
-declare module 'payload' {
+declare module "payload" {
   export interface GeneratedTypes extends Config {}
 }
