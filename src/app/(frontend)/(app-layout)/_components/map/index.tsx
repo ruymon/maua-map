@@ -1,18 +1,21 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
-import { MAPBOX_ACCESS_TOKEN } from "@/config/map";
+import { MAP_STYLES, MAPBOX_ACCESS_TOKEN } from "@/config/map";
 import { getMapCursor } from "@/lib/map/core";
 import { CampusOutlineLayer } from "@/lib/map/layers/campus-outline-layer";
 import { EdgesLayer } from "@/lib/map/layers/edges-layer";
 import { NodesLayer } from "@/lib/map/layers/nodes-layer";
+import { UserGeoLocationLayer } from "@/lib/map/layers/user-geolocation-layer";
 import { getTooltipContentBasedOnLayer } from "@/lib/map/tooltip";
 import { useMapViewStateStore } from "@/stores/map-view-state-store";
+import { ResolvedTheme } from "@/types/themes";
 import { Edge, Node } from "@payload-types";
 import { DeckGL } from "deck.gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { useTheme } from "next-themes";
 import { ReactNode, useState } from "react";
+import BaseMap from "react-map-gl";
 import { MapSkeleton } from "./map-skeleton";
 
 if (!MAPBOX_ACCESS_TOKEN) {
@@ -34,6 +37,7 @@ export function Map({ children, nodesData, edgesData }: MapProps) {
     CampusOutlineLayer(),
     NodesLayer(nodesData),
     EdgesLayer(edgesData),
+    UserGeoLocationLayer(),
   ];
 
   return (
@@ -56,14 +60,14 @@ export function Map({ children, nodesData, edgesData }: MapProps) {
         layers={mapLayers}
         getCursor={getMapCursor}
       >
-        {/* <BaseMap
+        <BaseMap
           attributionControl={false}
           reuseMaps={true}
           mapStyle={MAP_STYLES[resolvedTheme as ResolvedTheme]}
           antialias={true}
           mapboxAccessToken={MAPBOX_ACCESS_TOKEN}
           onLoad={() => setIsMapLoading(false)}
-        /> */}
+        />
         {children}
       </DeckGL>
     </figure>
