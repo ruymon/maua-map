@@ -1,18 +1,18 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
-import { MAP_STYLES, MAPBOX_ACCESS_TOKEN } from "@/config/map";
+import { MAPBOX_ACCESS_TOKEN } from "@/config/map";
 import { getMapCursor } from "@/lib/map/core";
+import { CampusOutlineLayer } from "@/lib/map/layers/campus-outline-layer";
 import { EdgesLayer } from "@/lib/map/layers/edges-layer";
 import { NodesLayer } from "@/lib/map/layers/nodes-layer";
 import { getTooltipContentBasedOnLayer } from "@/lib/map/tooltip";
 import { useMapViewStateStore } from "@/stores/map-view-state-store";
-import { ResolvedTheme } from "@/types/themes";
 import { Edge, Node } from "@payload-types";
 import { DeckGL } from "deck.gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { useTheme } from "next-themes";
 import { ReactNode, useState } from "react";
-import BaseMap from "react-map-gl";
 import { MapSkeleton } from "./map-skeleton";
 
 if (!MAPBOX_ACCESS_TOKEN) {
@@ -26,11 +26,15 @@ interface MapProps {
 }
 
 export function Map({ children, nodesData, edgesData }: MapProps) {
-  const [isMapLoading, setIsMapLoading] = useState(true);
+  const [isMapLoading, setIsMapLoading] = useState(false);
   const { resolvedTheme } = useTheme();
   const { viewState } = useMapViewStateStore();
 
-  const mapLayers = [NodesLayer(nodesData), EdgesLayer(edgesData)];
+  const mapLayers = [
+    CampusOutlineLayer(),
+    NodesLayer(nodesData),
+    EdgesLayer(edgesData),
+  ];
 
   return (
     <figure
@@ -52,14 +56,14 @@ export function Map({ children, nodesData, edgesData }: MapProps) {
         layers={mapLayers}
         getCursor={getMapCursor}
       >
-        <BaseMap
+        {/* <BaseMap
           attributionControl={false}
           reuseMaps={true}
           mapStyle={MAP_STYLES[resolvedTheme as ResolvedTheme]}
           antialias={true}
           mapboxAccessToken={MAPBOX_ACCESS_TOKEN}
           onLoad={() => setIsMapLoading(false)}
-        />
+        /> */}
         {children}
       </DeckGL>
     </figure>

@@ -173,6 +173,7 @@ export interface Edge {
   start_node: string | Node;
   end_node: string | Node;
   cost?: number | null;
+  type?: ("crosswalk" | "path") | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -338,6 +339,7 @@ export interface EdgesSelect<T extends boolean = true> {
   start_node?: T;
   end_node?: T;
   cost?: T;
+  type?: T;
   updatedAt?: T;
   createdAt?: T;
 }
