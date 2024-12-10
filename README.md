@@ -1,4 +1,4 @@
-## Mauá Map Tracker
+## Mauá Map
 
 A simple Next.js webapp to help users locate themselves around campus.
 

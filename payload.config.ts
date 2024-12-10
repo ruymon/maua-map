@@ -1,5 +1,7 @@
+import { EdgesCollection } from "@/collections/edges";
 import { EventsCollection } from "@/collections/events";
 import { MediaCollection } from "@/collections/media";
+import { NodesCollection } from "@/collections/nodes";
 import { RoomsCollection } from "@/collections/rooms";
 import { UsersCollection } from "@/collections/users";
 import { vercelPostgresAdapter } from "@payloadcms/db-vercel-postgres";
@@ -16,6 +18,8 @@ export default buildConfig({
     EventsCollection,
     UsersCollection,
     RoomsCollection,
+    NodesCollection,
+    EdgesCollection,
   ],
   plugins: [
     uploadthingStorage({
@@ -23,7 +27,7 @@ export default buildConfig({
         media: true,
       },
       options: {
-        apiKey: process.env.UPLOADTHING_SECRET,
+        token: process.env.UPLOADTHING_SECRET,
         acl: "public-read",
       },
     }),
@@ -39,12 +43,17 @@ export default buildConfig({
   },
   admin: {
     user: "users",
-    // components: {
-    //   graphics: {
-    //     Icon,
-    //     Logo,
-    //   },
-    // },
+    // Add your own logo and icon here
+    components: {
+      graphics: {
+        Icon: {
+          path: "/src/graphics/icon#Icon",
+        },
+        Logo: {
+          path: "/src/graphics/logo#Logo",
+        },
+      },
+    },
     meta: {
       // favicon: '/assets/favicon.svg',
       // ogImage: '/assets/ogImage.png',

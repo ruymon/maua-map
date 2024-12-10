@@ -1,4 +1,7 @@
+"use client";
+
 import { ReactNode } from "react";
+import { PageShell } from "../_components/page-shell";
 
 interface EventsPanelLayoutProps {
   children: ReactNode;
@@ -7,9 +10,5 @@ interface EventsPanelLayoutProps {
 export default function EventsPanelLayout({
   children,
 }: EventsPanelLayoutProps) {
-  return (
-    <main className="flex-1 flex-col gap-8 overflow-y-auto flex p-4 max-w-lg relative">
-      {children}
-    </main>
-  );
+  return <PageShell shellTitle="Eventos">{children}</PageShell>;
 }

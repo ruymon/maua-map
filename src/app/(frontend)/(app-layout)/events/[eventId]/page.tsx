@@ -1,19 +1,19 @@
 import { Media } from "@/../payload-types";
 import config from "@payload-config";
-import { getPayloadHMR } from "@payloadcms/next/utilities";
 import { notFound } from "next/navigation";
+import { getPayload } from "payload";
 import { BannerBlurBackdrop } from "./_components/banner-blur-backdrop";
 
 /**
  * Next.js will invalidate the cache when a request comes in, at most once every 60 seconds.
- * @see https://nextjs.org/docs/app/building-your-application/data-fetching/incremental-static-regeneration7
+ * @see https://nextjs.org/docs/app/building-your-application/data-fetching/incremental-static-regeneration
  */
 export const revalidate = 60;
 
 export const dynamicParams = true;
 
 export async function generateStaticParams() {
-  const payload = await getPayloadHMR({ config });
+  const payload = await getPayload({ config });
   const data = await payload.find({
     collection: "events",
     depth: 0,
@@ -41,7 +41,7 @@ export default async function EventDetailsPage({
     notFound();
   }
 
-  const payload = await getPayloadHMR({ config });
+  const payload = await getPayload({ config });
 
   const data = await payload.findByID({
     collection: "events",
@@ -55,7 +55,7 @@ export default async function EventDetailsPage({
   return (
     <>
       <BannerBlurBackdrop banner={data.banner as Media} />
-      <pre>{JSON.stringify(data, null, 2)}</pre>
+
       <header className="flex flex-col z-10">
         <h1 className="text-primary text-3xl font-extrabold">{data.name}</h1>
         <span className="text-muted-foreground text-sm">

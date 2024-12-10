@@ -17,3 +17,20 @@ export const MAP_INITIAL_VIEW_STATE: MapViewState = {
   pitch: 0,
   minZoom: 12,
 };
+
+/**
+ * @see https://github.com/visgl/deck.gl/blob/5d9c5907c37b588fb5eb262b9622e1aa033ee8b3/modules/core/src/lib/tooltip.ts#L26
+ */
+export const DECK_GL_TOOLTIP_STYLE_OVERRIDE = {
+  background: "transparent",
+  margin: "0",
+  padding: "0",
+  border: "none",
+  boxSizing: "border-box",
+  pointerEvents: "none",
+};
+
+export const MAP_LAYERS = {
+  GRAPH_NODES_LAYER_ID: "graph-nodes-layer",
+  GRAPH_EDGES_LAYER_ID: "graph-edges-layer",
+};
