@@ -1,5 +1,6 @@
-import "mapbox-gl/dist/mapbox-gl.css";
-import { Map } from "./_components/map";
+import { Suspense } from "react";
+import { MapShell } from "./_components/map/map-shell";
+import { MapSkeleton } from "./_components/map/map-skeleton";
 import { Sidebar } from "./_components/sidebar";
 
 export default function MapLayout({
@@ -8,10 +9,14 @@ export default function MapLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="relative flex h-svh w-screen flex-col-reverse justify-end md:flex-row md:justify-normal">
+    <div className="flex h-screen w-screen flex-col-reverse justify-end md:flex-row md:justify-normal">
       <Sidebar />
-      {children}
-      <Map />
+      <div className="flex-1 flex relative flex-col justify-end md:flex-row md:justify-normal">
+        {children}
+        <Suspense fallback={<MapSkeleton isMapLoading />}>
+          <MapShell />
+        </Suspense>
+      </div>
     </div>
   );
 }

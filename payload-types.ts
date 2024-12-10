@@ -15,18 +15,29 @@ export interface Config {
     events: Event;
     users: User;
     rooms: Room;
-    'payload-locked-documents': PayloadLockedDocument;
-    'payload-preferences': PayloadPreference;
-    'payload-migrations': PayloadMigration;
+    nodes: Node;
+    edges: Edge;
+    "payload-locked-documents": PayloadLockedDocument;
+    "payload-preferences": PayloadPreference;
+    "payload-migrations": PayloadMigration;
   };
+  collectionsJoins: {};
   collectionsSelect: {
     media: MediaSelect<false> | MediaSelect<true>;
     events: EventsSelect<false> | EventsSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     rooms: RoomsSelect<false> | RoomsSelect<true>;
-    'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
-    'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
-    'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
+    nodes: NodesSelect<false> | NodesSelect<true>;
+    edges: EdgesSelect<false> | EdgesSelect<true>;
+    "payload-locked-documents":
+      | PayloadLockedDocumentsSelect<false>
+      | PayloadLockedDocumentsSelect<true>;
+    "payload-preferences":
+      | PayloadPreferencesSelect<false>
+      | PayloadPreferencesSelect<true>;
+    "payload-migrations":
+      | PayloadMigrationsSelect<false>
+      | PayloadMigrationsSelect<true>;
   };
   db: {
     defaultIDType: string;
@@ -35,11 +46,11 @@ export interface Config {
   globalsSelect: {};
   locale: null;
   user: User & {
-    collection: 'users';
+    collection: "users";
   };
-  jobs?: {
+  jobs: {
     tasks: unknown;
-    workflows?: unknown;
+    workflows: unknown;
   };
 }
 export interface UserAuthOperations {
@@ -126,7 +137,7 @@ export interface Room {
  */
 export interface User {
   id: string;
-  role?: ('admin' | 'user') | null;
+  role?: ("admin" | "user") | null;
   updatedAt: string;
   createdAt: string;
   email?: string | null;
@@ -141,30 +152,64 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "nodes".
+ */
+export interface Node {
+  id: string;
+  /**
+   * @minItems 2
+   * @maxItems 2
+   */
+  coordinates: [number, number];
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "edges".
+ */
+export interface Edge {
+  id: string;
+  start_node: string | Node;
+  end_node: string | Node;
+  cost?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
   id: string;
   document?:
     | ({
-        relationTo: 'media';
+        relationTo: "media";
         value: string | Media;
       } | null)
     | ({
-        relationTo: 'events';
+        relationTo: "events";
         value: string | Event;
       } | null)
     | ({
-        relationTo: 'users';
+        relationTo: "users";
         value: string | User;
       } | null)
     | ({
-        relationTo: 'rooms';
+        relationTo: "rooms";
         value: string | Room;
+      } | null)
+    | ({
+        relationTo: "nodes";
+        value: string | Node;
+      } | null)
+    | ({
+        relationTo: "edges";
+        value: string | Edge;
       } | null);
   globalSlug?: string | null;
   user: {
-    relationTo: 'users';
+    relationTo: "users";
     value: string | User;
   };
   updatedAt: string;
@@ -177,7 +222,7 @@ export interface PayloadLockedDocument {
 export interface PayloadPreference {
   id: string;
   user: {
-    relationTo: 'users';
+    relationTo: "users";
     value: string | User;
   };
   key?: string | null;
@@ -278,6 +323,26 @@ export interface RoomsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "nodes_select".
+ */
+export interface NodesSelect<T extends boolean = true> {
+  coordinates?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "edges_select".
+ */
+export interface EdgesSelect<T extends boolean = true> {
+  start_node?: T;
+  end_node?: T;
+  cost?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents_select".
  */
 export interface PayloadLockedDocumentsSelect<T extends boolean = true> {
@@ -316,7 +381,6 @@ export interface Auth {
   [k: string]: unknown;
 }
 
-
-declare module 'payload' {
+declare module "payload" {
   export interface GeneratedTypes extends Config {}
 }

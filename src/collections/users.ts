@@ -15,6 +15,7 @@ export const UsersCollection: CollectionConfig = {
     hidden: ({ user }) => {
       return user && user.role === "user";
     },
+    group: "Administração",
   },
   auth: {
     loginWithUsername: true,
