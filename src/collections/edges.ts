@@ -42,5 +42,11 @@ export const EdgesCollection: CollectionConfig = {
       },
       type: "number",
     },
+    {
+      name: "type",
+      type: "select",
+      options: ["crosswalk", "path"],
+      defaultValue: "path",
+    },
   ],
 };
