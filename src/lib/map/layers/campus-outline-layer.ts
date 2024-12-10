@@ -9,12 +9,8 @@ export function CampusOutlineLayer() {
   return new GeoJsonLayer({
     id: "geojson",
     data: geoJsonUrl,
-    getLineColor: hexToRGBAArray(zinc[700], 200),
-    getLineWidth: 1,
+    getLineColor: hexToRGBAArray(zinc[500]),
+    getLineWidth: 0.2,
     pickable: true,
-    transitions: {
-      getLineColor: 1000,
-      getLineWidth: 1000,
-    },
   });
 }

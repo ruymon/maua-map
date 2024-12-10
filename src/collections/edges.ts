@@ -44,8 +44,11 @@ export const EdgesCollection: CollectionConfig = {
     },
     {
       name: "type",
+      label: {
+        pt: "Tipo de vértice",
+      },
       type: "select",
-      options: ["crosswalk", "path"],
+      options: ["crosswalk", "path", "staircase"],
       defaultValue: "path",
     },
   ],

@@ -3,7 +3,7 @@ import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
 import { Node } from "@payload-types";
 import { ScatterplotLayer } from "deck.gl";
 import { toast } from "sonner";
-import { amber } from "tailwindcss/colors";
+import { orange } from "tailwindcss/colors";
 import { hexToRGBArray } from "../../utils";
 
 export function NodesLayer(nodes: Node[] | undefined) {
@@ -25,13 +25,11 @@ export function NodesLayer(nodes: Node[] | undefined) {
     id: MAP_LAYERS.GRAPH_NODES_LAYER_ID,
     data: nodes,
     pickable: true,
-    stroked: true,
     filled: true,
     getRadius: 1,
     onClick: handleClick,
     getLineWidth: 0.25,
     getPosition: (d: Node) => [d.coordinates[0], d.coordinates[1]],
-    getFillColor: hexToRGBArray(amber[900]),
-    getLineColor: hexToRGBArray(amber[500]),
+    getFillColor: hexToRGBArray(orange[400]),
   });
 }

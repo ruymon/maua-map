@@ -173,7 +173,7 @@ export interface Edge {
   start_node: string | Node;
   end_node: string | Node;
   cost?: number | null;
-  type?: ("crosswalk" | "path") | null;
+  type?: ("crosswalk" | "path" | "staircase") | null;
   updatedAt: string;
   createdAt: string;
 }
