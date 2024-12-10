@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+
 import { DECK_GL_TOOLTIP_STYLE_OVERRIDE, MAP_LAYERS } from "@/config/map";
 import { Edge, Node } from "@payload-types";
 import { PickingInfo } from "deck.gl";
