@@ -15,7 +15,8 @@ export const MAP_INITIAL_VIEW_STATE: MapViewState = {
   zoom: 16,
   bearing: 0,
   pitch: 0,
-  minZoom: 12,
+  minZoom: 0,
+  maxZoom: 90,
 };
 
 /**
