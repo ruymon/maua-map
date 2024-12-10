@@ -15,15 +15,20 @@ export interface Config {
     events: Event;
     users: User;
     rooms: Room;
+    nodes: Node;
+    edges: Edge;
     "payload-locked-documents": PayloadLockedDocument;
     "payload-preferences": PayloadPreference;
     "payload-migrations": PayloadMigration;
   };
+  collectionsJoins: {};
   collectionsSelect: {
     media: MediaSelect<false> | MediaSelect<true>;
     events: EventsSelect<false> | EventsSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     rooms: RoomsSelect<false> | RoomsSelect<true>;
+    nodes: NodesSelect<false> | NodesSelect<true>;
+    edges: EdgesSelect<false> | EdgesSelect<true>;
     "payload-locked-documents":
       | PayloadLockedDocumentsSelect<false>
       | PayloadLockedDocumentsSelect<true>;
@@ -43,9 +48,9 @@ export interface Config {
   user: User & {
     collection: "users";
   };
-  jobs?: {
+  jobs: {
     tasks: unknown;
-    workflows?: unknown;
+    workflows: unknown;
   };
 }
 export interface UserAuthOperations {
@@ -147,6 +152,32 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "nodes".
+ */
+export interface Node {
+  id: string;
+  /**
+   * @minItems 2
+   * @maxItems 2
+   */
+  coordinates: [number, number];
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "edges".
+ */
+export interface Edge {
+  id: string;
+  start_node: string | Node;
+  end_node: string | Node;
+  cost?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -167,6 +198,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: "rooms";
         value: string | Room;
+      } | null)
+    | ({
+        relationTo: "nodes";
+        value: string | Node;
+      } | null)
+    | ({
+        relationTo: "edges";
+        value: string | Edge;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -279,6 +318,26 @@ export interface RoomsSelect<T extends boolean = true> {
   building?: T;
   floor?: T;
   coordinates?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "nodes_select".
+ */
+export interface NodesSelect<T extends boolean = true> {
+  coordinates?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "edges_select".
+ */
+export interface EdgesSelect<T extends boolean = true> {
+  start_node?: T;
+  end_node?: T;
+  cost?: T;
   updatedAt?: T;
   createdAt?: T;
 }

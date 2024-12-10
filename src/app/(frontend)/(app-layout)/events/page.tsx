@@ -17,7 +17,7 @@ export default async function EventsListPage() {
   const isEventsEmpty = events.length === 0;
 
   return (
-    <>
+    <div className="flex flex-1 flex-col gap-8">
       <header className="flex flex-col">
         <h1 className="text-primary text-3xl font-extrabold">Eventos</h1>
         <span className="text-muted-foreground text-sm">
@@ -46,6 +46,6 @@ export default async function EventsListPage() {
           </Fragment>
         ))}
       </div>
-    </>
+    </div>
   );
 }

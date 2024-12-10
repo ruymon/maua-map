@@ -5,8 +5,12 @@
     "maua",
     "mauá",
     "Parens",
+    "pickable",
     "postgres",
+    "Scatterplot",
     "turbopack",
-    "uploadthing"
+    "uploadthing",
+    "usehooks",
+    "vaul"
   ]
 }
