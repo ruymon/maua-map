@@ -1,12 +1,12 @@
 import config from "@payload-config";
-import { getPayloadHMR } from "@payloadcms/next/utilities";
 import Link from "next/link";
+import { getPayload } from "payload";
 import { Fragment } from "react";
 
 export const revalidate = 60;
 
 export default async function EventsListPage() {
-  const payload = await getPayloadHMR({ config });
+  const payload = await getPayload({ config });
 
   const data = await payload.find({
     collection: "events",
