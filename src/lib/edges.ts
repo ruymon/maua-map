@@ -1,8 +1,18 @@
 import config from "@payload-config";
-import { Edge } from "@payload-types";
+import { Node } from "@payload-types";
 import { getPayload } from "payload";
 
-export async function getAllEdges(): Promise<Edge[]> {
+export interface EdgeReturn {
+  id: string;
+  start_node: Node;
+  end_node: Node;
+  cost?: number | null;
+  type?: ("crosswalk" | "path" | "staircase") | null;
+  updatedAt: string;
+  createdAt: string;
+}
+
+export async function getAllEdges(): Promise<EdgeReturn[]> {
   const payload = await getPayload({ config });
 
   const { docs: edges } = await payload.find({
@@ -11,5 +21,5 @@ export async function getAllEdges(): Promise<Edge[]> {
     pagination: false,
   });
 
-  return edges;
+  return edges as unknown as EdgeReturn[]; // Todo: Fix this.
 }
