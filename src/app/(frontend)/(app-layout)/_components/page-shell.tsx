@@ -71,7 +71,12 @@ export function PageShell({
             <DrawerTitle />
             <DrawerDescription />
           </VisuallyHidden>
-          <div className="overflow-y-auto p-8 faded-bottom relative">
+          <div
+            className={cn("p-8 faded-bottom relative", {
+              "overflow-y-auto": drawerSnap === 1,
+              "overflow-hidden": drawerSnap !== 1,
+            })}
+          >
             <div className="mx-auto mb-4 h-3 w-24 rounded-full bg-muted" />
             {children}
           </div>
