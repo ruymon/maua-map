@@ -30,7 +30,7 @@ interface MapProps {
 }
 
 export function Map({ children, nodesData, edgesData }: MapProps) {
-  const [isMapLoading, setIsMapLoading] = useState(false);
+  const [isMapLoading, setIsMapLoading] = useState(true);
   const { resolvedTheme } = useTheme();
   const { viewState } = useMapViewStateStore();
 

@@ -4,6 +4,8 @@ import { MediaCollection } from "@/collections/media";
 import { NodesCollection } from "@/collections/nodes";
 import { RoomsCollection } from "@/collections/rooms";
 import { UsersCollection } from "@/collections/users";
+import { IS_IN_DEVELOPMENT } from "@/constants/workspace";
+import { postgresAdapter } from "@payloadcms/db-postgres";
 import { vercelPostgresAdapter } from "@payloadcms/db-vercel-postgres";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import { uploadthingStorage } from "@payloadcms/storage-uploadthing";
@@ -33,9 +35,16 @@ export default buildConfig({
     }),
   ],
   secret: process.env.PAYLOAD_SECRET || "",
-  db: vercelPostgresAdapter({
-    idType: "uuid",
-  }),
+  db: IS_IN_DEVELOPMENT
+    ? postgresAdapter({
+        pool: {
+          connectionString: process.env.DATABASE_URL,
+        },
+        idType: "uuid",
+      })
+    : vercelPostgresAdapter({
+        idType: "uuid",
+      }),
   i18n: {
     supportedLanguages: {
       pt,

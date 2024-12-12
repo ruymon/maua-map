@@ -11,13 +11,18 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "utfs.io",
-        port: "",
         pathname: "/a/zzluz68xhg/**",
       },
+      {
+        protocol: "http",
+        hostname: "localhost",
+        port: "3000",
+      },
+      {
+        protocol: "https",
+        hostname: "maua-map.vercel.app",
+      },
     ],
-  },
-  experimental: {
-    // reactCompiler: false,
   },
 };
 

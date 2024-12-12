@@ -1,7 +1,6 @@
 import config from "@payload-config";
-import Link from "next/link";
 import { getPayload } from "payload";
-import { Fragment } from "react";
+import { EventCard } from "./_components/event-card";
 
 export const revalidate = 60;
 
@@ -10,7 +9,7 @@ export default async function EventsListPage() {
 
   const data = await payload.find({
     collection: "events",
-    depth: 2,
+    depth: 1,
   });
 
   const events = data.docs;
@@ -19,7 +18,7 @@ export default async function EventsListPage() {
   return (
     <div className="flex flex-1 flex-col gap-8">
       <header className="flex flex-col">
-        <h1 className="text-primary text-3xl font-extrabold">Eventos</h1>
+        <h1 className="text-primary text-3xl font-bold">Eventos</h1>
         <span className="text-muted-foreground text-sm">
           Fique por dentro dos próximos eventos
         </span>
@@ -37,13 +36,8 @@ export default async function EventsListPage() {
       )}
 
       <div className="flex flex-col gap-8 w-full">
-        {events.map((event, idx) => (
-          <Fragment key={event.id}>
-            <Link href={`/events/${event.id}`}>
-              <span>{event.name}</span>
-            </Link>
-            {idx < events.length - 1 && <hr className="border-zinc-300" />}
-          </Fragment>
+        {events.map((event) => (
+          <EventCard key={event.id} {...event} />
         ))}
       </div>
     </div>
