@@ -11,7 +11,7 @@ export function Sidebar() {
         <header className="md:flex flex-col mx-auto hidden gap-2">
           <MauaIcon className="w-10 text-primary rounded" />
 
-          <span className="rounded w-10 flex p-1 items-center justify-center text-xs font-bold uppercase leading-none bg-orange-500/10 text-orange-500">
+          <span className="rounded w-10 flex p-1 items-center justify-center text-xs font-bold uppercase leading-none bg-[#DC9705] text-white">
             beta
           </span>
         </header>

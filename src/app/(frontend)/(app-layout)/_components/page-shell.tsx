@@ -44,7 +44,7 @@ export function PageShell({
   hideTopNav = false,
   shellTitle,
   closeHref = "/",
-  mobileDrawerSnapPoints = [0.3, 0.5, 1],
+  mobileDrawerSnapPoints = [0.3, 0.6, 1],
 }: PageShellProps) {
   const [drawerSnap, setDrawerSnap] = useState<number | string | null>(
     mobileDrawerSnapPoints[1],
@@ -71,7 +71,10 @@ export function PageShell({
             <DrawerTitle />
             <DrawerDescription />
           </VisuallyHidden>
-          <div className="overflow-y-auto p-8 faded-bottom">{children}</div>
+          <div className="overflow-y-auto p-8 faded-bottom relative">
+            <div className="mx-auto mb-4 h-3 w-24 rounded-full bg-muted" />
+            {children}
+          </div>
         </DrawerContent>
       </Drawer>
     );

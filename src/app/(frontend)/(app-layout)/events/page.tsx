@@ -18,18 +18,20 @@ export default async function EventsListPage() {
   return (
     <div className="flex flex-1 flex-col gap-8">
       <header className="flex flex-col">
-        <h1 className="text-primary text-3xl font-bold">Eventos</h1>
-        <span className="text-muted-foreground text-sm">
+        <h1 className="text-secondary-foreground text-3xl font-bold">
+          Eventos
+        </h1>
+        <span className="text-accent-foreground">
           Fique por dentro dos próximos eventos
         </span>
       </header>
 
       {isEventsEmpty && (
         <div className="flex flex-col gap-4 items-center">
-          <h3 className="text-zinc-200 text-lg font-semibold">
+          <h3 className="text-accent-foreground text-lg font-semibold">
             Não há eventos disponíveis
           </h3>
-          <p className="text-zinc-300">
+          <p className="text-muted-foreground">
             Fique ligado, sempre tem algo rolando por aqui!
           </p>
         </div>
