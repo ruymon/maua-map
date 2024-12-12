@@ -68,9 +68,10 @@ export default async function EventDetailsPage({
   const eventEndTime = data.endTime && format(parseISO(data.endTime), "HH:mm");
 
   const isEventActivitiesEmpty = data.activities?.length === 0;
+
   return (
     <>
-      <div className="flex flex-1 flex-col gap-8 z-30">
+      <div className="flex flex-1 flex-col gap-8 z-0">
         <div className="flex flex-col gap-6">
           <Image
             src={bannerUrl}
