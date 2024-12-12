@@ -2,6 +2,7 @@
 "use client";
 
 import { MAP_STYLES, MAPBOX_ACCESS_TOKEN } from "@/config/map";
+import { EdgeReturn } from "@/lib/edges";
 import { getMapCursor } from "@/lib/map/core";
 import { CampusOutlineLayer } from "@/lib/map/layers/campus-outline-layer";
 import { EdgesLayer } from "@/lib/map/layers/edges-layer";
@@ -10,7 +11,7 @@ import { UserGeoLocationLayer } from "@/lib/map/layers/user-geolocation-layer";
 import { getTooltipContentBasedOnLayer } from "@/lib/map/tooltip";
 import { useMapViewStateStore } from "@/stores/map-view-state-store";
 import { ResolvedTheme } from "@/types/themes";
-import { Edge, Node } from "@payload-types";
+import { Node } from "@payload-types";
 import { DeckGL } from "deck.gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { useTheme } from "next-themes";
@@ -25,11 +26,11 @@ if (!MAPBOX_ACCESS_TOKEN) {
 interface MapProps {
   children?: ReactNode;
   nodesData?: Node[];
-  edgesData?: Edge[];
+  edgesData?: EdgeReturn[];
 }
 
 export function Map({ children, nodesData, edgesData }: MapProps) {
-  const [isMapLoading, setIsMapLoading] = useState(false);
+  const [isMapLoading, setIsMapLoading] = useState(true);
   const { resolvedTheme } = useTheme();
   const { viewState } = useMapViewStateStore();
 

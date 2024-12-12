@@ -1,10 +1,11 @@
 import { MAP_LAYERS } from "@/config/map";
+import { EdgeReturn } from "@/lib/edges";
 import { hexToRGBArray } from "@/lib/utils";
 import { Edge } from "@payload-types";
 import { LineLayer } from "deck.gl";
 import { red } from "tailwindcss/colors";
 
-export function EdgesLayer(edges: Edge[] | undefined) {
+export function EdgesLayer(edges: EdgeReturn[] | undefined) {
   return new LineLayer({
     id: MAP_LAYERS.GRAPH_EDGES_LAYER_ID,
     data: edges,
@@ -23,7 +24,7 @@ export function EdgesLayer(edges: Edge[] | undefined) {
       end_node.coordinates[1],
     ],
     // getColor: (d: Edge) => d.id === selectedEdge?.id ? [255, 0, 0] : [136, 136, 136],
-    getColor: hexToRGBArray(red[500]),
+    getColor: hexToRGBArray(red[900]),
     // onClick: (info) => {
     //   if (info.object) {
     //     setSelectedEdge(info.object as Edge);

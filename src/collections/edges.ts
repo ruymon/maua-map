@@ -2,6 +2,7 @@ import { CollectionConfig } from "payload";
 
 export const EdgesCollection: CollectionConfig = {
   slug: "edges",
+  disableDuplicate: true,
   admin: {
     group: "Grafo",
   },

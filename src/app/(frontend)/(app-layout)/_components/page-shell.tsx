@@ -7,11 +7,11 @@ import { ReactNode, useState } from "react";
 import {
   Drawer,
   DrawerContent,
-  DrawerHeader,
+  DrawerDescription,
   DrawerTitle,
 } from "@/components/ui/drawer";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { useMediaQuery } from "@/hooks/use-media-query";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { XIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 
@@ -44,7 +44,7 @@ export function PageShell({
   hideTopNav = false,
   shellTitle,
   closeHref = "/",
-  mobileDrawerSnapPoints = [0.3, 0.5, 1],
+  mobileDrawerSnapPoints = [0.3, 0.6, 1],
 }: PageShellProps) {
   const [drawerSnap, setDrawerSnap] = useState<number | string | null>(
     mobileDrawerSnapPoints[1],
@@ -67,39 +67,14 @@ export function PageShell({
         setActiveSnapPoint={setDrawerSnap}
       >
         <DrawerContent>
-          <DrawerHeader>
-            <DrawerTitle>{shellTitle}</DrawerTitle>
-          </DrawerHeader>
-
-          <ScrollArea className="overflow-y-auto">
+          <VisuallyHidden>
+            <DrawerTitle />
+            <DrawerDescription />
+          </VisuallyHidden>
+          <div className="overflow-y-auto p-8 faded-bottom relative">
+            <div className="mx-auto mb-4 h-3 w-24 rounded-full bg-muted" />
             {children}
-
-            <div className="h-36 w-full p-8 flex items-center justify-center text-white bg-black">
-              CONTEÚDO
-            </div>
-
-            <div className="h-36 w-full p-8 flex items-center justify-center text-white bg-black">
-              CONTEÚDO
-            </div>
-            <div className="h-36 w-full p-8 flex items-center justify-center text-white bg-black">
-              CONTEÚDO
-            </div>
-            <div className="h-36 w-full p-8 flex items-center justify-center text-white bg-black">
-              CONTEÚDO
-            </div>
-
-            <div className="h-36 w-full p-8 flex items-center justify-center text-white bg-black">
-              CONTEÚDO
-            </div>
-
-            <div className="h-36 w-full p-8 flex items-center justify-center text-white bg-black">
-              CONTEÚDO
-            </div>
-
-            <div className="h-36 w-full p-8 flex items-center justify-center text-white bg-black">
-              CONTEÚDO
-            </div>
-          </ScrollArea>
+          </div>
         </DrawerContent>
       </Drawer>
     );
@@ -114,7 +89,7 @@ export function PageShell({
       )}
     >
       {!hideTopNav && (
-        <header className="sticky top-0 z-20 flex min-h-10 items-center justify-between px-6 py-1.5 text-muted-foreground backdrop-blur-xl">
+        <header className="sticky top-0 z-20 min-h-10 flex items-center justify-between px-6 py-1.5 text-muted-foreground backdrop-blur-xl">
           <span className="text-xs">{shellTitle}</span>
           <nav className="flex items-center gap-0.5">
             <Link
