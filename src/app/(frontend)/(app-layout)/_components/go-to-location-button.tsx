@@ -28,7 +28,8 @@ export function GoToLocationButton({
     ];
 
     const data = await getPathAction(startCoordinates, destinationCoordinates);
-    setPath(data.path);
+
+    setPath(data);
   };
   return <Button onClick={handleClick} {...props} />;
 }

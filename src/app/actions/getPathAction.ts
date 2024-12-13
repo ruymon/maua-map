@@ -2,7 +2,7 @@
 
 import { aStar } from "@/lib/astar";
 import { getAllEdges } from "@/lib/edges";
-import { findNearestNode, getAllNodes } from "@/lib/nodes";
+import { findNearestNode } from "@/lib/nodes";
 
 export async function getPathAction(
   startCoordinates: [number, number],
@@ -18,18 +18,18 @@ export async function getPathAction(
   }
 
   try {
-    const [nodes, edges] = await Promise.all([getAllNodes(), getAllEdges()]);
+    const edges = await getAllEdges();
 
     const startNode = await findNearestNode(startCoordinates);
     const endNode = await findNearestNode(endCoordinates);
 
-    const path = aStar(startNode, endNode, nodes, edges);
+    const path = aStar(startNode, endNode, edges);
 
     if (!path) {
       throw new Error("No path found");
     }
 
-    return { path };
+    return path;
   } catch (error) {
     console.error("Error in path finding:", error);
     throw new Error("Internal server error");

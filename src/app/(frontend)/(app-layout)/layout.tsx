@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { MapShell } from "./_components/map/map-shell";
 import { MapSkeleton } from "./_components/map/map-skeleton";
 import { Sidebar } from "./_components/sidebar";
-import { UserGeoLocationTracker } from "./user-geolocation-tracker";
+import { UserGeoLocationTracker } from "./_components/user-geolocation-tracker";
 
 export default function MapLayout({
   children,
