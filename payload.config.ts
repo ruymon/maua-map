@@ -1,8 +1,8 @@
 import { EdgesCollection } from "@/collections/edges";
 import { EventsCollection } from "@/collections/events";
+import { LocationsCollection } from "@/collections/locations";
 import { MediaCollection } from "@/collections/media";
 import { NodesCollection } from "@/collections/nodes";
-import { RoomsCollection } from "@/collections/rooms";
 import { UsersCollection } from "@/collections/users";
 import { IS_IN_DEVELOPMENT } from "@/constants/workspace";
 import { postgresAdapter } from "@payloadcms/db-postgres";
@@ -19,7 +19,7 @@ export default buildConfig({
     MediaCollection,
     EventsCollection,
     UsersCollection,
-    RoomsCollection,
+    LocationsCollection,
     NodesCollection,
     EdgesCollection,
   ],

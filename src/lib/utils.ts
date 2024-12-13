@@ -25,3 +25,7 @@ export function hexToRGBAArray(
   const rgb = hexToRGBArray(hex);
   return [...rgb, alpha];
 }
+
+export function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}

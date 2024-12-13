@@ -8,10 +8,10 @@ export const EdgesCollection: CollectionConfig = {
   },
   labels: {
     singular: {
-      pt: "Vértice",
+      pt: "Aresta",
     },
     plural: {
-      pt: "Vértices",
+      pt: "Arestas",
     },
   },
   fields: [

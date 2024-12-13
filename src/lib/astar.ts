@@ -13,47 +13,52 @@ export function aStar(
   nodes: Node[],
   edges: EdgeReturn[],
 ): Node[] | null {
-  const openSet = new Set([start.id]);
-  const cameFrom: Record<string, string> = {};
-  const gScore: Record<string, number> = { [start.id]: 0 };
-  const fScore: Record<string, number> = { [start.id]: heuristic(start, goal) };
+  const openSet = new Set([start]);
+  const cameFrom: Map<string, Node> = new Map();
+  const gScore: Map<string, number> = new Map();
+  const fScore: Map<string, number> = new Map();
+
+  gScore.set(start.id, 0);
+  fScore.set(start.id, heuristic(start, goal));
 
   while (openSet.size > 0) {
     const current = Array.from(openSet).reduce((a, b) =>
-      fScore[a] < fScore[b] ? a : b,
+      (fScore.get(a.id) ?? Infinity) < (fScore.get(b.id) ?? Infinity) ? a : b,
     );
 
-    if (current === goal.id) {
+    if (current.id === goal.id) {
       const path = [];
-      let currentId = current;
-      while (currentId in cameFrom) {
-        path.unshift(nodes.find((n) => n.id === currentId)!);
-        currentId = cameFrom[currentId];
+      let currentNode: Node | undefined = current;
+      while (currentNode) {
+        path.unshift(currentNode);
+        currentNode = cameFrom.get(currentNode.id);
       }
-      path.unshift(start);
       return path;
     }
 
     openSet.delete(current);
 
     const neighbors = edges
-      .filter((e) => e.start_node.id === current || e.end_node.id === current)
-      .map((e) => (e.start_node.id === current ? e.end_node : e.start_node));
+      .filter(
+        (e) => e.start_node.id === current.id || e.end_node.id === current.id,
+      )
+      .map((e) => (e.start_node.id === current.id ? e.end_node : e.start_node));
 
     for (const neighbor of neighbors) {
       const edge = edges.find(
         (e) =>
-          (e.start_node.id === current && e.end_node.id === neighbor.id) ||
-          (e.end_node.id === current && e.start_node.id === neighbor.id),
+          (e.start_node.id === current.id && e.end_node.id === neighbor.id) ||
+          (e.end_node.id === current.id && e.start_node.id === neighbor.id),
       )!;
 
-      const tentativeGScore = gScore[current] + (edge.cost ?? 1);
+      const tentativeGScore =
+        (gScore.get(current.id) ?? Infinity) + (edge.cost ?? 1);
 
-      if (tentativeGScore < (gScore[neighbor.id] ?? Infinity)) {
-        cameFrom[neighbor.id] = current;
-        gScore[neighbor.id] = tentativeGScore;
-        fScore[neighbor.id] = gScore[neighbor.id] + heuristic(neighbor, goal);
-        openSet.add(neighbor.id);
+      if (tentativeGScore < (gScore.get(neighbor.id) ?? Infinity)) {
+        cameFrom.set(neighbor.id, current);
+        gScore.set(neighbor.id, tentativeGScore);
+        fScore.set(neighbor.id, tentativeGScore + heuristic(neighbor, goal));
+        openSet.add(neighbor);
       }
     }
   }

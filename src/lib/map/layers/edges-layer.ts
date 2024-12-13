@@ -1,4 +1,5 @@
 import { MAP_LAYERS } from "@/config/map";
+import { IS_IN_DEVELOPMENT } from "@/constants/workspace";
 import { EdgeReturn } from "@/lib/edges";
 import { hexToRGBArray } from "@/lib/utils";
 import { Edge } from "@payload-types";
@@ -23,12 +24,7 @@ export function EdgesLayer(edges: EdgeReturn[] | undefined) {
       // @ts-expect-error - TS doesn't know that end_node is a Node
       end_node.coordinates[1],
     ],
-    // getColor: (d: Edge) => d.id === selectedEdge?.id ? [255, 0, 0] : [136, 136, 136],
     getColor: hexToRGBArray(red[900]),
-    // onClick: (info) => {
-    //   if (info.object) {
-    //     setSelectedEdge(info.object as Edge);
-    //   }
-    // }
+    visible: IS_IN_DEVELOPMENT,
   });
 }

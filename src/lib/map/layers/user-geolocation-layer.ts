@@ -1,3 +1,4 @@
+import { MAP_LAYERS } from "@/config/map";
 import { hexToRGBAArray, hexToRGBArray } from "@/lib/utils";
 import { useUserGeolocationStore } from "@/stores/user-geolocation-store";
 import { ScatterplotLayer } from "deck.gl";
@@ -13,7 +14,7 @@ export function UserGeoLocationLayer() {
   ];
 
   return new ScatterplotLayer({
-    id: "user-location",
+    id: MAP_LAYERS.USER_LOCATION_LAYER_ID,
     data: userPosition,
     pickable: false,
     stroked: true,

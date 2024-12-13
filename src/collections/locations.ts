@@ -1,13 +1,13 @@
 import { CollectionConfig } from "payload";
 
-export const RoomsCollection: CollectionConfig = {
-  slug: "rooms",
+export const LocationsCollection: CollectionConfig = {
+  slug: "locations",
   labels: {
     singular: {
-      pt: "Sala",
+      pt: "Local de interesse",
     },
     plural: {
-      pt: "Salas",
+      pt: "Locais de interesse",
     },
   },
   admin: {
@@ -25,7 +25,7 @@ export const RoomsCollection: CollectionConfig = {
     {
       name: "code",
       label: {
-        pt: "Código da Sala",
+        pt: "Código da Sala/local",
       },
       type: "text",
       required: true,
@@ -47,12 +47,12 @@ export const RoomsCollection: CollectionConfig = {
       required: true,
     },
     {
-      name: "coordinates",
+      name: "referenceNode",
       label: {
-        pt: "Coordenadas",
+        pt: "Nó de referência",
       },
-      type: "point",
-      required: true,
+      type: "relationship",
+      relationTo: "nodes",
     },
   ],
 };

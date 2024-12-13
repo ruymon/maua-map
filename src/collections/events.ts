@@ -20,6 +20,7 @@ export const EventsCollection: CollectionConfig = {
         pt: "Nome do evento",
       },
       type: "text",
+      required: true,
     },
     {
       name: "banner",
@@ -28,6 +29,7 @@ export const EventsCollection: CollectionConfig = {
       },
       type: "upload",
       relationTo: "media",
+      required: true,
     },
     {
       name: "description",
@@ -35,12 +37,14 @@ export const EventsCollection: CollectionConfig = {
         pt: "Descrição",
       },
       type: "text",
+      required: true,
     },
     {
       name: "startTime",
       label: {
         pt: "Hora de início",
       },
+      required: true,
       type: "date",
       admin: {
         date: {
@@ -53,6 +57,7 @@ export const EventsCollection: CollectionConfig = {
       label: {
         pt: "Hora de término",
       },
+      required: true,
       type: "date",
       admin: {
         date: {
@@ -81,6 +86,7 @@ export const EventsCollection: CollectionConfig = {
           label: {
             pt: "Nome da atividade",
           },
+          required: true,
         },
         {
           name: "description",
@@ -88,14 +94,16 @@ export const EventsCollection: CollectionConfig = {
           label: {
             pt: "Descrição",
           },
+          required: true,
         },
         {
-          name: "room",
+          name: "location",
           label: {
-            pt: "Sala",
+            pt: "Local da atividade",
           },
           type: "relationship",
-          relationTo: "rooms",
+          relationTo: "locations",
+          required: true,
         },
         {
           name: "startTime",

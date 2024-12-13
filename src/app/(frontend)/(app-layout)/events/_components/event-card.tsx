@@ -1,7 +1,6 @@
 import { BASE_URL } from "@/constants/url";
+import { timestampToDayAndMonth, timestampToShotTime } from "@/lib/time";
 import { Event, Media } from "@payload-types";
-import { format, parseISO } from "date-fns";
-import { ptBR } from "date-fns/locale";
 import { CalendarIcon, ClockIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,11 +16,9 @@ export function EventCard({
   const { url, description: bannerDescription, filename } = banner as Media;
   const bannerUrl = `${BASE_URL}${url}`;
 
-  const eventDate =
-    startTime &&
-    format(parseISO(startTime), "d 'de' MMMM 'de' yyyy", { locale: ptBR });
-  const eventStartTime = startTime && format(parseISO(startTime), "HH:mm");
-  const eventEndTime = endTime && format(parseISO(endTime), "HH:mm");
+  const eventDate = startTime && timestampToDayAndMonth(startTime);
+  const eventStartTime = startTime && timestampToShotTime(startTime);
+  const eventEndTime = endTime && timestampToShotTime(endTime);
 
   return (
     <Link

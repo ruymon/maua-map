@@ -9,7 +9,7 @@ export function MapSkeleton({ isMapLoading }: MapSkeletonProps) {
   return (
     <figure
       className={cn(
-        "relative flex flex-1 items-center justify-center bg-secondary/50 animate-pulse backdrop-blur-md transition-all delay-1000",
+        "relative flex flex-1 items-center justify-center bg-secondary/50 backdrop-blur-md transition-all delay-1000",
         isMapLoading ? "visible z-20 opacity-100" : "invisible -z-10 opacity-0",
       )}
     >
