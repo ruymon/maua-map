@@ -1,19 +1,17 @@
 "use client";
 
 import { getPathAction } from "@/app/actions/getPathAction";
-import { Button } from "@/components/ui/button";
+import { Button, ButtonProps } from "@/components/ui/button";
 import { useRoutePathStore } from "@/stores/use-route-path-store";
 import { useUserGeolocationStore } from "@/stores/user-geolocation-store";
-import { ReactNode } from "react";
 
-interface GoToLocationButtonProps {
-  children?: ReactNode;
+interface GoToLocationButtonProps extends ButtonProps {
   destinationCoordinates: [number, number];
 }
 
 export function GoToLocationButton({
-  children,
   destinationCoordinates,
+  ...props
 }: GoToLocationButtonProps) {
   const { location } = useUserGeolocationStore();
   const { setPath } = useRoutePathStore();
@@ -32,5 +30,5 @@ export function GoToLocationButton({
     const data = await getPathAction(startCoordinates, destinationCoordinates);
     setPath(data.path);
   };
-  return <Button onClick={handleClick}>{children}</Button>;
+  return <Button onClick={handleClick} {...props} />;
 }

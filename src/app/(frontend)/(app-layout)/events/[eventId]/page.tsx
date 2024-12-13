@@ -1,4 +1,4 @@
-import { Location, Media, Node } from "@/../payload-types";
+import { Media } from "@/../payload-types";
 import { BASE_URL } from "@/constants/url";
 import { timestampToDayAndMonth, timestampToShotTime } from "@/lib/time";
 import config from "@payload-config";
@@ -6,8 +6,8 @@ import { CalendarIcon, ClockIcon } from "lucide-react";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getPayload } from "payload";
-import { GoToLocationButton } from "../../_components/go-to-location-button";
 import { BannerBlurBackdrop } from "./_components/banner-blur-backdrop";
+import { EventActivityCard } from "./_components/event-activity-card";
 
 /**
  * Next.js will invalidate the cache when a request comes in, at most once every 60 seconds.
@@ -66,7 +66,7 @@ export default async function EventDetailsPage({
           />
 
           <header className="flex flex-col gap-1">
-            <h1 className="text-secondary-foreground text-3xl font-bold">
+            <h1 className="text-secondary-foreground text-2xl md:text-3xl font-bold">
               {data.name}
             </h1>
             <span className="text-muted-foreground">{data.description}</span>
@@ -104,7 +104,7 @@ export default async function EventDetailsPage({
         {!isEventActivitiesEmpty && (
           <div className="flex flex-col gap-4">
             <header className="flex flex-col">
-              <h1 className="text-accent-foreground text-xl font-semibold">
+              <h1 className="text-accent-foreground text-lg md:text-xl font-semibold">
                 Atividades
               </h1>
               <span className="text-muted-foreground text-sm">
@@ -113,25 +113,9 @@ export default async function EventDetailsPage({
             </header>
 
             <div className="flex flex-col gap-2">
-              {data.activities?.map((activity) => {
-                const { referenceNode, name } =
-                  activity.location as unknown as Location;
-                const { coordinates } = referenceNode as unknown as Node;
-                return (
-                  <div key={activity.id} className="p-3 rounded-md border flex">
-                    <header className="flex flex-col">
-                      <h3 className="font-medium text-lg">{activity.name}</h3>
-                      <span className="text-sm text-muted-foreground">
-                        {activity.description}
-                      </span>
-
-                      <GoToLocationButton destinationCoordinates={coordinates}>
-                        Rota para o {name}
-                      </GoToLocationButton>
-                    </header>
-                  </div>
-                );
-              })}
+              {data.activities?.map((activity) => (
+                <EventActivityCard key={activity.id} {...activity} />
+              ))}
             </div>
           </div>
         )}

@@ -38,8 +38,10 @@ export function EventCard({
       </figure>
       <div className="flex flex-col gap-4 px-3 py-5">
         <header className="flex flex-col">
-          <h2 className="font-bold text-xl text-accent-foreground">{name}</h2>
-          <span className="text-muted-foreground line-clamp-2">
+          <h2 className="font-bold text-lg md:text-xl text-accent-foreground">
+            {name}
+          </h2>
+          <span className="text-muted-foreground md:text-base text-sm line-clamp-2">
             {description}
           </span>
         </header>

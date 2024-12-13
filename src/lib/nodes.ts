@@ -22,10 +22,10 @@ export async function findNearestNode(
     collection: "nodes",
     where: {
       coordinates: {
-        near: `${coordinates[0]},${coordinates[1]},10`,
+        near: `${coordinates[0]},${coordinates[1]},10,null`,
       },
     },
-    limit: 1,
+    // limit: 1,
   });
   console.log("Nearest Node", docs);
   const nearestNode = docs[0];
