@@ -1,12 +1,12 @@
-import { Media } from "@/../payload-types";
+import { Location, Media, Node } from "@/../payload-types";
 import { BASE_URL } from "@/constants/url";
+import { timestampToDayAndMonth, timestampToShotTime } from "@/lib/time";
 import config from "@payload-config";
-import { format, parseISO } from "date-fns";
-import { ptBR } from "date-fns/locale";
 import { CalendarIcon, ClockIcon } from "lucide-react";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getPayload } from "payload";
+import { GoToLocationButton } from "../../_components/go-to-location-button";
 import { BannerBlurBackdrop } from "./_components/banner-blur-backdrop";
 
 /**
@@ -16,20 +16,6 @@ import { BannerBlurBackdrop } from "./_components/banner-blur-backdrop";
 export const revalidate = 60;
 
 export const dynamicParams = true;
-
-export async function generateStaticParams() {
-  const payload = await getPayload({ config });
-  const data = await payload.find({
-    collection: "events",
-    depth: 0,
-  });
-
-  const events = data.docs;
-
-  return events.map((event) => ({
-    id: String(event.id),
-  }));
-}
 
 interface EventDetailsPageProps {
   params: Promise<{
@@ -60,12 +46,9 @@ export default async function EventDetailsPage({
   const banner = data.banner as Media;
   const bannerUrl = `${BASE_URL}${banner.url}`;
 
-  const eventDate =
-    data.startTime &&
-    format(parseISO(data.startTime), "d 'de' MMMM 'de' yyyy", { locale: ptBR });
-  const eventStartTime =
-    data.startTime && format(parseISO(data.startTime), "HH:mm");
-  const eventEndTime = data.endTime && format(parseISO(data.endTime), "HH:mm");
+  const eventDate = data.startTime && timestampToDayAndMonth(data.startTime);
+  const eventStartTime = data.startTime && timestampToShotTime(data.startTime);
+  const eventEndTime = data.endTime && timestampToShotTime(data.endTime);
 
   const isEventActivitiesEmpty = data.activities?.length === 0;
 
@@ -112,7 +95,7 @@ export default async function EventDetailsPage({
               </div>
 
               <span className="text-accent-foreground text-lg">
-                {eventStartTime} - {eventEndTime}
+                {eventStartTime} às {eventEndTime} BRT
               </span>
             </div>
           </div>
@@ -130,16 +113,25 @@ export default async function EventDetailsPage({
             </header>
 
             <div className="flex flex-col gap-2">
-              {data.activities?.map((activity) => (
-                <div key={activity.id} className="p-3 rounded-md border flex">
-                  <header className="flex flex-col">
-                    <h3 className="font-medium text-lg">{activity.name}</h3>
-                    <span className="text-sm text-muted-foreground">
-                      {activity.description}
-                    </span>
-                  </header>
-                </div>
-              ))}
+              {data.activities?.map((activity) => {
+                const { referenceNode, name } =
+                  activity.location as unknown as Location;
+                const { coordinates } = referenceNode as unknown as Node;
+                return (
+                  <div key={activity.id} className="p-3 rounded-md border flex">
+                    <header className="flex flex-col">
+                      <h3 className="font-medium text-lg">{activity.name}</h3>
+                      <span className="text-sm text-muted-foreground">
+                        {activity.description}
+                      </span>
+
+                      <GoToLocationButton destinationCoordinates={coordinates}>
+                        Rota para o {name}
+                      </GoToLocationButton>
+                    </header>
+                  </div>
+                );
+              })}
             </div>
           </div>
         )}

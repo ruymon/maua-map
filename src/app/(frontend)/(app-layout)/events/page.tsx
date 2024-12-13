@@ -2,6 +2,10 @@ import config from "@payload-config";
 import { getPayload } from "payload";
 import { EventCard } from "./_components/event-card";
 
+/**
+ * Next.js will invalidate the cache when a request comes in, at most once every 60 seconds.
+ * @see https://nextjs.org/docs/app/building-your-application/data-fetching/incremental-static-regeneration
+ */
 export const revalidate = 60;
 
 export default async function EventsListPage() {

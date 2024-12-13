@@ -7,6 +7,7 @@ import { getMapCursor } from "@/lib/map/core";
 import { CampusOutlineLayer } from "@/lib/map/layers/campus-outline-layer";
 import { EdgesLayer } from "@/lib/map/layers/edges-layer";
 import { NodesLayer } from "@/lib/map/layers/nodes-layer";
+import { RoutePathLayer } from "@/lib/map/layers/route-path-layer";
 import { UserGeoLocationLayer } from "@/lib/map/layers/user-geolocation-layer";
 import { getTooltipContentBasedOnLayer } from "@/lib/map/tooltip";
 import { useMapViewStateStore } from "@/stores/map-view-state-store";
@@ -18,7 +19,6 @@ import { useTheme } from "next-themes";
 import { ReactNode, useState } from "react";
 import BaseMap from "react-map-gl";
 import { MapSkeleton } from "./map-skeleton";
-
 if (!MAPBOX_ACCESS_TOKEN) {
   throw new Error("NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN is not set");
 }
@@ -38,6 +38,7 @@ export function Map({ children, nodesData, edgesData }: MapProps) {
     CampusOutlineLayer(),
     NodesLayer(nodesData),
     EdgesLayer(edgesData),
+    RoutePathLayer(),
     UserGeoLocationLayer(),
   ];
 

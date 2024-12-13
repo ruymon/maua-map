@@ -14,7 +14,7 @@ export interface Config {
     media: Media;
     events: Event;
     users: User;
-    rooms: Room;
+    locations: Location;
     nodes: Node;
     edges: Edge;
     'payload-locked-documents': PayloadLockedDocument;
@@ -26,7 +26,7 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     events: EventsSelect<false> | EventsSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
-    rooms: RoomsSelect<false> | RoomsSelect<true>;
+    locations: LocationsSelect<false> | LocationsSelect<true>;
     nodes: NodesSelect<false> | NodesSelect<true>;
     edges: EdgesSelect<false> | EdgesSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -89,16 +89,16 @@ export interface Media {
  */
 export interface Event {
   id: string;
-  name?: string | null;
-  banner?: (string | null) | Media;
-  description?: string | null;
-  startTime?: string | null;
-  endTime?: string | null;
+  name: string;
+  banner: string | Media;
+  description: string;
+  startTime: string;
+  endTime: string;
   activities?:
     | {
-        name?: string | null;
-        description?: string | null;
-        room?: (string | null) | Room;
+        name: string;
+        description: string;
+        location: string | Location;
         startTime?: string | null;
         endTime?: string | null;
         id?: string | null;
@@ -109,14 +109,24 @@ export interface Event {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "rooms".
+ * via the `definition` "locations".
  */
-export interface Room {
+export interface Location {
   id: string;
   name: string;
   code: string;
   building: string;
   floor: string;
+  referenceNode?: (string | null) | Node;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "nodes".
+ */
+export interface Node {
+  id: string;
   /**
    * @minItems 2
    * @maxItems 2
@@ -143,20 +153,6 @@ export interface User {
   loginAttempts?: number | null;
   lockUntil?: string | null;
   password?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "nodes".
- */
-export interface Node {
-  id: string;
-  /**
-   * @minItems 2
-   * @maxItems 2
-   */
-  coordinates: [number, number];
-  updatedAt: string;
-  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -191,8 +187,8 @@ export interface PayloadLockedDocument {
         value: string | User;
       } | null)
     | ({
-        relationTo: 'rooms';
-        value: string | Room;
+        relationTo: 'locations';
+        value: string | Location;
       } | null)
     | ({
         relationTo: 'nodes';
@@ -278,7 +274,7 @@ export interface EventsSelect<T extends boolean = true> {
     | {
         name?: T;
         description?: T;
-        room?: T;
+        location?: T;
         startTime?: T;
         endTime?: T;
         id?: T;
@@ -305,14 +301,14 @@ export interface UsersSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "rooms_select".
+ * via the `definition` "locations_select".
  */
-export interface RoomsSelect<T extends boolean = true> {
+export interface LocationsSelect<T extends boolean = true> {
   name?: T;
   code?: T;
   building?: T;
   floor?: T;
-  coordinates?: T;
+  referenceNode?: T;
   updatedAt?: T;
   createdAt?: T;
 }

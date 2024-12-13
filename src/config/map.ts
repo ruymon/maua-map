@@ -34,4 +34,6 @@ export const DECK_GL_TOOLTIP_STYLE_OVERRIDE = {
 export const MAP_LAYERS = {
   GRAPH_NODES_LAYER_ID: "graph-nodes-layer",
   GRAPH_EDGES_LAYER_ID: "graph-edges-layer",
+  USER_LOCATION_LAYER_ID: "user-location-layer",
+  ROUTE_PATH_LAYER_ID: "route-path-layer",
 };

@@ -15,20 +15,20 @@ export async function getAllNodes(): Promise<Node[]> {
 }
 
 export async function findNearestNode(
-  longitude: number,
-  latitude: number,
+  coordinates: [number, number],
 ): Promise<Node> {
   const payload = await getPayload({ config });
-  const maxDistance = 1 * 1000; // 1 kilometer
-  const { docs: nearestNode } = await payload.find({
+  const { docs } = await payload.find({
     collection: "nodes",
     where: {
       coordinates: {
-        near: `${longitude},${latitude},${maxDistance}`,
+        near: `${coordinates[0]},${coordinates[1]},10`,
       },
     },
     limit: 1,
   });
+  console.log("Nearest Node", docs);
+  const nearestNode = docs[0];
 
-  return nearestNode[0];
+  return nearestNode;
 }
