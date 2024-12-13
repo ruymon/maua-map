@@ -17,9 +17,9 @@ export interface Config {
     locations: Location;
     nodes: Node;
     edges: Edge;
-    'payload-locked-documents': PayloadLockedDocument;
-    'payload-preferences': PayloadPreference;
-    'payload-migrations': PayloadMigration;
+    "payload-locked-documents": PayloadLockedDocument;
+    "payload-preferences": PayloadPreference;
+    "payload-migrations": PayloadMigration;
   };
   collectionsJoins: {};
   collectionsSelect: {
@@ -29,9 +29,15 @@ export interface Config {
     locations: LocationsSelect<false> | LocationsSelect<true>;
     nodes: NodesSelect<false> | NodesSelect<true>;
     edges: EdgesSelect<false> | EdgesSelect<true>;
-    'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
-    'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
-    'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
+    "payload-locked-documents":
+      | PayloadLockedDocumentsSelect<false>
+      | PayloadLockedDocumentsSelect<true>;
+    "payload-preferences":
+      | PayloadPreferencesSelect<false>
+      | PayloadPreferencesSelect<true>;
+    "payload-migrations":
+      | PayloadMigrationsSelect<false>
+      | PayloadMigrationsSelect<true>;
   };
   db: {
     defaultIDType: string;
@@ -40,7 +46,7 @@ export interface Config {
   globalsSelect: {};
   locale: null;
   user: User & {
-    collection: 'users';
+    collection: "users";
   };
   jobs: {
     tasks: unknown;
@@ -141,7 +147,7 @@ export interface Node {
  */
 export interface User {
   id: string;
-  role?: ('admin' | 'user') | null;
+  role?: ("admin" | "user") | null;
   updatedAt: string;
   createdAt: string;
   email?: string | null;
@@ -163,7 +169,7 @@ export interface Edge {
   start_node: string | Node;
   end_node: string | Node;
   cost?: number | null;
-  type?: ('crosswalk' | 'path' | 'staircase') | null;
+  type?: ("crosswalk" | "path" | "staircase") | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -175,32 +181,32 @@ export interface PayloadLockedDocument {
   id: string;
   document?:
     | ({
-        relationTo: 'media';
+        relationTo: "media";
         value: string | Media;
       } | null)
     | ({
-        relationTo: 'events';
+        relationTo: "events";
         value: string | Event;
       } | null)
     | ({
-        relationTo: 'users';
+        relationTo: "users";
         value: string | User;
       } | null)
     | ({
-        relationTo: 'locations';
+        relationTo: "locations";
         value: string | Location;
       } | null)
     | ({
-        relationTo: 'nodes';
+        relationTo: "nodes";
         value: string | Node;
       } | null)
     | ({
-        relationTo: 'edges';
+        relationTo: "edges";
         value: string | Edge;
       } | null);
   globalSlug?: string | null;
   user: {
-    relationTo: 'users';
+    relationTo: "users";
     value: string | User;
   };
   updatedAt: string;
@@ -213,7 +219,7 @@ export interface PayloadLockedDocument {
 export interface PayloadPreference {
   id: string;
   user: {
-    relationTo: 'users';
+    relationTo: "users";
     value: string | User;
   };
   key?: string | null;
@@ -373,7 +379,6 @@ export interface Auth {
   [k: string]: unknown;
 }
 
-
-declare module 'payload' {
+declare module "payload" {
   export interface GeneratedTypes extends Config {}
 }
