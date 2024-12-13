@@ -1,5 +1,4 @@
 import { MAP_LAYERS } from "@/config/map";
-import { IS_IN_DEVELOPMENT } from "@/constants/workspace";
 import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
 import { Node } from "@payload-types";
 import { ScatterplotLayer } from "deck.gl";
@@ -27,13 +26,11 @@ export function NodesLayer(nodes: Node[] | undefined) {
     data: nodes,
     pickable: true,
     filled: true,
-    // getRadius: 0.5,
     radiusMinPixels: 2,
     radiusMaxPixels: 4,
     onClick: handleClick,
     getLineWidth: 0.25,
     getPosition: (d: Node) => [d.coordinates[0], d.coordinates[1]],
     getFillColor: hexToRGBArray(orange[400]),
-    visible: IS_IN_DEVELOPMENT,
   });
 }

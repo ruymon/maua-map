@@ -1,6 +1,4 @@
 import { MAP_LAYERS } from "@/config/map";
-import { USER_MOCK_GEO_LOCATION } from "@/constants/mock";
-import { IS_IN_DEVELOPMENT } from "@/constants/workspace";
 import { hexToRGBAArray, hexToRGBArray } from "@/lib/utils";
 import { useUserGeolocationStore } from "@/stores/user-geolocation-store";
 import { ScatterplotLayer } from "deck.gl";
@@ -15,15 +13,9 @@ export function UserGeoLocationLayer() {
     },
   ];
 
-  const userMockPosition = [
-    {
-      position: [USER_MOCK_GEO_LOCATION[0], USER_MOCK_GEO_LOCATION[1]],
-    },
-  ];
-
   return new ScatterplotLayer({
     id: MAP_LAYERS.USER_LOCATION_LAYER_ID,
-    data: IS_IN_DEVELOPMENT ? userMockPosition : userPosition,
+    data: userPosition,
     pickable: false,
     stroked: true,
     filled: true,

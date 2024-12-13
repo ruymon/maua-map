@@ -10,7 +10,6 @@ function heuristic(node: Node, goal: Node): number {
 export function aStar(
   start: Node,
   goal: Node,
-  nodes: Node[],
   edges: EdgeReturn[],
 ): Node[] | null {
   const openSet = new Set([start]);
