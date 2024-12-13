@@ -22,10 +22,10 @@ export default async function EventsListPage() {
   return (
     <div className="flex flex-1 flex-col gap-8">
       <header className="flex flex-col">
-        <h1 className="text-secondary-foreground text-3xl font-bold">
+        <h1 className="text-secondary-foreground text-xl md:text-3xl font-bold">
           Eventos
         </h1>
-        <span className="text-accent-foreground">
+        <span className="text-muted-foreground">
           Fique por dentro dos próximos eventos
         </span>
       </header>

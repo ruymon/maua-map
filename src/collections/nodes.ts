@@ -5,6 +5,7 @@ export const NodesCollection: CollectionConfig = {
   admin: {
     group: "Grafo",
   },
+  access: { read: () => true },
   labels: {
     singular: {
       pt: "Nó",
