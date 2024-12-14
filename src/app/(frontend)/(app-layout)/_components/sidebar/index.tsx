@@ -1,14 +1,14 @@
 import { MauaIcon } from "@/components/maua-icon";
 import { Separator } from "@/components/ui/separator";
-import { Building2Icon, CalendarIcon, LogInIcon, MapIcon } from "lucide-react";
+import { CalendarIcon, LogInIcon, MapIcon } from "lucide-react";
 import { SidebarItem } from "./sidebar-item";
 import { SidebarThemeSwitcher } from "./sidebar-theme-switcher";
 
 export function Sidebar() {
   return (
-    <aside className="w-full z-30 h-14 md:h-screen md:max-h-screen md:w-14 bg-sidebar flex">
-      <div className="flex flex-1 md:flex-col gap-4 md:py-2 md:px-0 px-4">
-        <header className="md:flex flex-col mx-auto hidden gap-2">
+    <aside className=" z-30 hidden h-screen max-h-screen w-14 bg-sidebar md:flex flex-col items-center">
+      <div className="flex flex-1 flex-col gap-4 py-2 px-4">
+        <header className="flex flex-col mx-auto  gap-2">
           <MauaIcon className="w-10 text-primary rounded" />
 
           <span className="rounded w-10 flex p-1 items-center justify-center text-xs font-bold uppercase leading-none bg-[#DC9705] text-white">
@@ -16,10 +16,10 @@ export function Sidebar() {
           </span>
         </header>
 
-        <Separator className="hidden md:flex mx-auto w-3/4" />
+        <Separator className="flex mx-auto w-3/4" />
 
-        <nav className="flex flex-1 md:flex-col md:justify-between">
-          <div className="flex md:flex-col gap-4">
+        <nav className="flex flex-1 flex-col justify-between">
+          <div className="flex flex-col gap-4">
             <SidebarItem
               href="/"
               icon={<MapIcon className="w-5" />}
@@ -33,19 +33,12 @@ export function Sidebar() {
               title="Eventos"
               label="Confira os próximos eventos"
             />
-
-            <SidebarItem
-              href="/rooms"
-              icon={<Building2Icon className="w-5" />}
-              title="Salas"
-              label="Veja todos os espaços disponíveis"
-            />
           </div>
 
           <SidebarThemeSwitcher />
         </nav>
 
-        <Separator className="hidden md:flex mx-auto w-3/4" />
+        <Separator className="flex mx-auto w-3/4" />
 
         <SidebarItem
           href="/admin"

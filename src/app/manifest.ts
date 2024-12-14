@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "Mauá Map",
     short_name: "Mauá Map",
-    description: "A Progressive Web App built with Next.js",
+    description: "Mapa virtual do Instituto Mauá de Tecnologia",
     start_url: "/",
     display: "standalone",
     background_color: "#ffffff",

@@ -36,4 +36,6 @@ export const MAP_LAYERS = {
   GRAPH_EDGES_LAYER_ID: "graph-edges-layer",
   USER_LOCATION_LAYER_ID: "user-location-layer",
   ROUTE_PATH_LAYER_ID: "route-path-layer",
+  CAMPUS_OUTLINE_LAYER_ID: "campus-outline-layer",
+  CAMPUS_SHAPE_LAYER_ID: "campus-shape-layer",
 };

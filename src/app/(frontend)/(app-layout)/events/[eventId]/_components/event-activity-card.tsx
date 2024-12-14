@@ -1,5 +1,5 @@
 import { Location, Node } from "@payload-types";
-import { ArrowRightIcon } from "lucide-react";
+import { MapPinIcon } from "lucide-react";
 import { GoToLocationButton } from "../../../_components/go-to-location-button";
 
 interface EventActivityCardProps {
@@ -26,7 +26,7 @@ export function EventActivityCard({
         <span className="text-sm text-muted-foreground">{description}</span>
       </header>
       <GoToLocationButton size="icon" destinationCoordinates={coordinates}>
-        <ArrowRightIcon />
+        <MapPinIcon />
         <span className="sr-only">Rota para o {locationName}</span>
       </GoToLocationButton>
     </div>

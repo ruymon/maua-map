@@ -4,6 +4,8 @@ import { getPathAction } from "@/actions/get-path-action";
 import { Button, ButtonProps } from "@/components/ui/button";
 import { useRoutePathStore } from "@/stores/use-route-path-store";
 import { useUserGeolocationStore } from "@/stores/user-geolocation-store";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 interface GoToLocationButtonProps extends ButtonProps {
   destinationCoordinates: [number, number];
@@ -15,6 +17,9 @@ export function GoToLocationButton({
 }: GoToLocationButtonProps) {
   const { location } = useUserGeolocationStore();
   const { setPath } = useRoutePathStore();
+  const router = useRouter();
+
+  const handleHover = () => router.prefetch("/");
 
   const handleClick = async () => {
     if (!location) return;
@@ -30,6 +35,8 @@ export function GoToLocationButton({
     const data = await getPathAction(startCoordinates, destinationCoordinates);
 
     setPath(data);
+    toast.success("Siga a rota até o local!");
+    router.push("/");
   };
-  return <Button onClick={handleClick} {...props} />;
+  return <Button onClick={handleClick} onMouseEnter={handleHover} {...props} />;
 }
