@@ -1,4 +1,5 @@
 import { MAP_LAYERS } from "@/config/map";
+import { IS_IN_DEVELOPMENT } from "@/constants/workspace";
 import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
 import { Node } from "@payload-types";
 import { ScatterplotLayer } from "deck.gl";
@@ -32,5 +33,6 @@ export function NodesLayer(nodes: Node[] | undefined) {
     getLineWidth: 0.25,
     getPosition: (d: Node) => [d.coordinates[0], d.coordinates[1]],
     getFillColor: hexToRGBArray(orange[400]),
+    visible: IS_IN_DEVELOPMENT,
   });
 }

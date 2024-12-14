@@ -61,7 +61,7 @@ export function SidebarThemeSwitcher() {
         sideOffset={6}
       >
         <span className="text-xs font-semibold">Tema</span>
-        <span className="text-2xs text-muted-foreground">Mude a aparencia</span>
+        <span className="text-2xs text-muted-foreground">Mude a aparência</span>
       </TooltipContent>
     </Tooltip>
   );

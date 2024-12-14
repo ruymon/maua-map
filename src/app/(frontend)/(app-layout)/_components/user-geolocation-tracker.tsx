@@ -14,7 +14,7 @@ export function UserGeoLocationTracker() {
   const options = useMemo(
     () => ({
       enableHighAccuracy: true,
-      timeout: 5000,
+      timeout: Infinity,
       maximumAge: Infinity,
     }),
     [],
