@@ -4,8 +4,8 @@
 import { MAP_STYLES, MAPBOX_ACCESS_TOKEN } from "@/config/map";
 import { EdgeReturn } from "@/lib/edges";
 import { getMapCursor } from "@/lib/map/core";
-import { BuildingShapeLayer } from "@/lib/map/layers/building-layer";
 import { CampusOutlineLayer } from "@/lib/map/layers/campus-outline-layer";
+import { CampusShapeLayer } from "@/lib/map/layers/campus-shape-layer";
 import { EdgesLayer } from "@/lib/map/layers/edges-layer";
 import { NodesLayer } from "@/lib/map/layers/nodes-layer";
 import { RoutePathLayer } from "@/lib/map/layers/route-path-layer";
@@ -36,12 +36,12 @@ export function Map({ children, nodesData, edgesData }: MapProps) {
   const { viewState } = useMapViewStateStore();
 
   const mapLayers = [
+    CampusShapeLayer(),
     CampusOutlineLayer(),
     NodesLayer(nodesData),
     EdgesLayer(edgesData),
     RoutePathLayer(),
     UserGeoLocationLayer(),
-    BuildingShapeLayer(),
   ];
 
   return (

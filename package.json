@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "dev:turbo": "next dev --turbo",
+    "dev:pwa": "next dev --experimental-https",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -68,12 +69,14 @@
     "tailwindcss-animate": "^1.0.7",
     "usehooks-ts": "^3.1.0",
     "vaul": "^1.1.1",
+    "web-push": "^3.6.7",
     "zustand": "^5.0.2"
   },
   "devDependencies": {
     "@types/node": "^20.17.9",
     "@types/react": "19.0.1",
     "@types/react-dom": "19.0.1",
+    "@types/web-push": "^3.6.4",
     "eslint": "^8.57.1",
     "eslint-config-next": "15.1.0",
     "husky": "^9.1.7",

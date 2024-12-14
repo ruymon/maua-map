@@ -1,4 +1,5 @@
 import { MAP_LAYERS } from "@/config/map";
+import { IS_IN_DEVELOPMENT } from "@/constants/workspace";
 import { EdgeReturn } from "@/lib/edges";
 import { hexToRGBArray } from "@/lib/utils";
 import { Edge } from "@payload-types";
@@ -24,5 +25,6 @@ export function EdgesLayer(edges: EdgeReturn[] | undefined) {
       end_node.coordinates[1],
     ],
     getColor: hexToRGBArray(red[900]),
+    visible: IS_IN_DEVELOPMENT,
   });
 }

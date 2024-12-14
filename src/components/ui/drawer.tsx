@@ -44,7 +44,7 @@ const DrawerContent = React.forwardRef<
       aria-description="Painel"
       ref={ref}
       className={cn(
-        "fixed bottom-0 left-0 right-0 outline-none z-50 mt-24 h-[98%] flex flex-col rounded-t-[10px] border bg-background",
+        "fixed bottom-0 left-0 right-0 outline-none z-50 mt-24 h-[90%] flex flex-col rounded-t-[10px] border bg-background",
         className,
       )}
       {...props}
