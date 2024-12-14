@@ -4,6 +4,7 @@
 import { MAP_STYLES, MAPBOX_ACCESS_TOKEN } from "@/config/map";
 import { EdgeReturn } from "@/lib/edges";
 import { getMapCursor } from "@/lib/map/core";
+import { BuildingLabelsLayer } from "@/lib/map/layers/building-labels-layer";
 import { CampusOutlineLayer } from "@/lib/map/layers/campus-outline-layer";
 import { CampusShapeLayer } from "@/lib/map/layers/campus-shape-layer";
 import { EdgesLayer } from "@/lib/map/layers/edges-layer";
@@ -40,6 +41,7 @@ export function Map({ children, nodesData, edgesData }: MapProps) {
     CampusOutlineLayer(),
     NodesLayer(nodesData),
     EdgesLayer(edgesData),
+    BuildingLabelsLayer(),
     RoutePathLayer(),
     UserGeoLocationLayer(),
   ];
