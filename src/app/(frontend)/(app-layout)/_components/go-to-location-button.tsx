@@ -1,6 +1,6 @@
 "use client";
 
-import { getPathAction } from "@/app/actions/getPathAction";
+import { getPathAction } from "@/actions/get-path-action";
 import { Button, ButtonProps } from "@/components/ui/button";
 import { useRoutePathStore } from "@/stores/use-route-path-store";
 import { useUserGeolocationStore } from "@/stores/user-geolocation-store";
