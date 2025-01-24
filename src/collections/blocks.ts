@@ -19,10 +19,11 @@ export const BlockCollection: CollectionConfig = {
   fields: [
     {
       name: "name",
+      type: "text",
       label: {
         pt: "Nome",
       },
-      type: "text",
+      required: true,
       unique: true,
       index: true,
     },

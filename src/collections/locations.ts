@@ -28,7 +28,7 @@ export const LocationsCollection: CollectionConfig = {
         pt: "Código da Sala/local",
       },
       type: "text",
-      required: true,
+      unique: true,
     },
     {
       name: "block",
