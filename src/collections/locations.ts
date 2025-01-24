@@ -31,11 +31,12 @@ export const LocationsCollection: CollectionConfig = {
       required: true,
     },
     {
-      name: "building",
+      name: "block",
       label: {
         pt: "Bloco",
       },
-      type: "text",
+      type: "relationship",
+      relationTo: "block",
       required: true,
     },
     {
