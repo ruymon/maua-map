@@ -1,6 +1,6 @@
 import { MAP_LAYERS } from "@/config/map";
-import { IS_IN_DEVELOPMENT } from "@/constants/workspace";
 import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
+import { useMapLayersStore } from "@/stores/map-layers-store";
 import { Node } from "@payload-types";
 import { ScatterplotLayer } from "deck.gl";
 import { toast } from "sonner";
@@ -10,6 +10,7 @@ import { hexToRGBArray } from "../../utils";
 export function NodesLayer(nodes: Node[] | undefined) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [copiedText, copy] = useCopyToClipboard();
+  const { isNodesLayerVisible } = useMapLayersStore();
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleClick = (d: any) => {
@@ -33,6 +34,6 @@ export function NodesLayer(nodes: Node[] | undefined) {
     getLineWidth: 0.25,
     getPosition: (d: Node) => [d.coordinates[0], d.coordinates[1]],
     getFillColor: hexToRGBArray(orange[400]),
-    visible: IS_IN_DEVELOPMENT,
+    visible: isNodesLayerVisible,
   });
 }
