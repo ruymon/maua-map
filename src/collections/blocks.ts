@@ -26,5 +26,14 @@ export const BlockCollection: CollectionConfig = {
       unique: true,
       index: true,
     },
+    {
+      name: "locations",
+      label: {
+        pt: "Locais de interesse",
+      },
+      type: "join",
+      collection: "locations",
+      on: "block",
+    },
   ],
 };
