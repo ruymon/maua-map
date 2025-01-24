@@ -134,6 +134,7 @@ export interface Location {
 export interface Block {
   id: string;
   name: string;
+  image?: (string | null) | Media;
   locations?: {
     docs?: (string | Location)[] | null;
     hasNextPage?: boolean | null;
@@ -342,6 +343,7 @@ export interface LocationsSelect<T extends boolean = true> {
  */
 export interface BlockSelect<T extends boolean = true> {
   name?: T;
+  image?: T;
   locations?: T;
   updatedAt?: T;
   createdAt?: T;

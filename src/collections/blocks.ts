@@ -28,6 +28,14 @@ export const BlockCollection: CollectionConfig = {
       index: true,
     },
     {
+      name: "image",
+      label: {
+        pt: "Imagem do bloco",
+      },
+      type: "upload",
+      relationTo: "media",
+    },
+    {
       name: "locations",
       label: {
         pt: "Locais de interesse",
