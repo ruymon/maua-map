@@ -8,8 +8,8 @@ export interface MapLayersStore {
 }
 
 export const useMapLayersStore = create<MapLayersStore>((set) => ({
-  isEdgesLayerVisible: false,
-  isNodesLayerVisible: false,
+  isEdgesLayerVisible: true,
+  isNodesLayerVisible: true,
   setIsEdgesLayerVisible: (visible) => set({ isEdgesLayerVisible: visible }),
   setIsNodesLayerVisible: (visible) => set({ isEdgesLayerVisible: visible }),
 }));

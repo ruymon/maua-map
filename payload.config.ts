@@ -1,3 +1,4 @@
+import { BlockCollection } from "@/collections/blocks";
 import { EdgesCollection } from "@/collections/edges";
 import { EventsCollection } from "@/collections/events";
 import { LocationsCollection } from "@/collections/locations";
@@ -20,6 +21,7 @@ export default buildConfig({
     EventsCollection,
     UsersCollection,
     LocationsCollection,
+    BlockCollection,
     NodesCollection,
     EdgesCollection,
   ],
