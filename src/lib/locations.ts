@@ -16,9 +16,10 @@ export async function getFirstFiveLocationsBasedOnQuery(
     depth: 1,
     pagination: false,
     where: {
-      normalizedName: {
-        like: normalizedQuery,
-      },
+      or: [
+        { normalizedName: { like: normalizedQuery } },
+        { code: { like: query } }, // Keep roomCode as it is since it might not need accent normalization
+      ],
     },
     limit: 5,
   });
