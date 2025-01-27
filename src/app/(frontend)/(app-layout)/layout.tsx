@@ -21,7 +21,6 @@ export default function MapLayout({
         </Suspense>
         <UserGeoLocationTracker />
       </div>
-      {/* <InstallPWAPromptBanner /> */}
     </div>
   );
 }

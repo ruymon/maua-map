@@ -14,17 +14,17 @@ export function EdgesLayer(edges: EdgeReturn[] | undefined) {
     data: edges,
     pickable: true,
     getWidth: 3,
-    getSourcePosition: ({ start_node }: Edge) => [
-      // @ts-expect-error - TS doesn't know that start_node is a Node
-      start_node.coordinates[0],
-      // @ts-expect-error - TS doesn't know that start_node is a Node
-      start_node.coordinates[1],
+    getSourcePosition: ({ startNode }: Edge) => [
+      // @ts-expect-error - TS doesn't know that startNode is a Node
+      startNode.coordinates[0],
+      // @ts-expect-error - TS doesn't know that startNode is a Node
+      startNode.coordinates[1],
     ],
-    getTargetPosition: ({ end_node }: Edge) => [
-      // @ts-expect-error - TS doesn't know that end_node is a Node
-      end_node.coordinates[0],
-      // @ts-expect-error - TS doesn't know that end_node is a Node
-      end_node.coordinates[1],
+    getTargetPosition: ({ endNode }: Edge) => [
+      // @ts-expect-error - TS doesn't know that endNode is a Node
+      endNode.coordinates[0],
+      // @ts-expect-error - TS doesn't know that endNode is a Node
+      endNode.coordinates[1],
     ],
     getColor: hexToRGBArray(red[900]),
     visible: isEdgesLayerVisible,

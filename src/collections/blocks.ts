@@ -19,12 +19,21 @@ export const BlockCollection: CollectionConfig = {
   fields: [
     {
       name: "name",
+      type: "text",
       label: {
         pt: "Nome",
       },
-      type: "text",
+      required: true,
       unique: true,
       index: true,
+    },
+    {
+      name: "image",
+      label: {
+        pt: "Imagem do bloco",
+      },
+      type: "upload",
+      relationTo: "media",
     },
     {
       name: "locations",

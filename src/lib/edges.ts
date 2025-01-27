@@ -4,8 +4,8 @@ import { getPayload } from "payload";
 
 export interface EdgeReturn {
   id: string;
-  start_node: Node;
-  end_node: Node;
+  startNode: Node;
+  endNode: Node;
   cost?: number | null;
   type?: ("crosswalk" | "path" | "staircase") | null;
   updatedAt: string;

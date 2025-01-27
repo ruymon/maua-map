@@ -15,9 +15,9 @@ export const EdgesCollection: CollectionConfig = {
     },
   },
   fields: [
-    // Todo Validate that the start_node and end_node are different
+    // Todo Validate that the startNode and endNode are different
     {
-      name: "start_node",
+      name: "startNode",
       label: {
         pt: "Nó de início",
       },
@@ -27,7 +27,7 @@ export const EdgesCollection: CollectionConfig = {
       relationTo: "nodes",
     },
     {
-      name: "end_node",
+      name: "endNode",
       label: {
         pt: "Nó de fim",
       },
