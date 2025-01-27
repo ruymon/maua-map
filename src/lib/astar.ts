@@ -39,15 +39,15 @@ export function aStar(
 
     const neighbors = edges
       .filter(
-        (e) => e.start_node.id === current.id || e.end_node.id === current.id,
+        (e) => e.startNode.id === current.id || e.endNode.id === current.id,
       )
-      .map((e) => (e.start_node.id === current.id ? e.end_node : e.start_node));
+      .map((e) => (e.startNode.id === current.id ? e.endNode : e.startNode));
 
     for (const neighbor of neighbors) {
       const edge = edges.find(
         (e) =>
-          (e.start_node.id === current.id && e.end_node.id === neighbor.id) ||
-          (e.end_node.id === current.id && e.start_node.id === neighbor.id),
+          (e.startNode.id === current.id && e.endNode.id === neighbor.id) ||
+          (e.endNode.id === current.id && e.startNode.id === neighbor.id),
       )!;
 
       const tentativeGScore =

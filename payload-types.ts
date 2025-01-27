@@ -120,8 +120,19 @@ export interface Event {
 export interface Location {
   id: string;
   name: string;
+  normalizedName?: string | null;
   code?: string | null;
   block: string | Block;
+  type:
+    | 'classroom'
+    | 'laboratory'
+    | 'office'
+    | 'bathroom'
+    | 'storage'
+    | 'cafeteria'
+    | 'restaurant'
+    | 'sports'
+    | 'auditorium';
   floor: string;
   referenceNode?: (string | null) | Node;
   updatedAt: string;
@@ -181,8 +192,8 @@ export interface User {
  */
 export interface Edge {
   id: string;
-  start_node: string | Node;
-  end_node: string | Node;
+  startNode: string | Node;
+  endNode: string | Node;
   cost?: number | null;
   type?: ('crosswalk' | 'path' | 'staircase') | null;
   updatedAt: string;
@@ -330,8 +341,10 @@ export interface UsersSelect<T extends boolean = true> {
  */
 export interface LocationsSelect<T extends boolean = true> {
   name?: T;
+  normalizedName?: T;
   code?: T;
   block?: T;
+  type?: T;
   floor?: T;
   referenceNode?: T;
   updatedAt?: T;
@@ -362,8 +375,8 @@ export interface NodesSelect<T extends boolean = true> {
  * via the `definition` "edges_select".
  */
 export interface EdgesSelect<T extends boolean = true> {
-  start_node?: T;
-  end_node?: T;
+  startNode?: T;
+  endNode?: T;
   cost?: T;
   type?: T;
   updatedAt?: T;

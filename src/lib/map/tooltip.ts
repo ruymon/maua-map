@@ -27,14 +27,14 @@ export const EdgeLayerToolTip = (edge: Edge) => {
 
         <div class="flex flex-col gap-1">
           <span>Nó de início:</span>
-          <span>${edge.start_node.id}</span>
-          <span class="text-2xs text-muted-foreground">${edge.start_node.coordinates}</span>
+          <span>${edge.startNode.id}</span>
+          <span class="text-2xs text-muted-foreground">${edge.startNode.coordinates}</span>
         </div>
 
         <div class="flex flex-col gap-1">
           <span>Nó de fim:</span>
-          <span>${edge.end_node.id}</span>
-          <span class="text-2xs text-muted-foreground">${edge.end_node.coordinates}</span>
+          <span>${edge.endNode.id}</span>
+          <span class="text-2xs text-muted-foreground">${edge.endNode.coordinates}</span>
         </div>
 
         <div class="flex flex-col gap-1">
