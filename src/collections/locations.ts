@@ -84,7 +84,7 @@ export const LocationsCollection: CollectionConfig = {
           value: "storage",
         },
         {
-          label: "Cafeteria",
+          label: "Copa",
           value: "cafeteria",
         },
         {
