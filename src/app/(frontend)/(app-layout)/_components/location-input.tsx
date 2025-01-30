@@ -9,9 +9,10 @@ import {
 } from "@/components/ui/command";
 import { getFirstFiveLocationsBasedOnQuery } from "@/lib/locations";
 import { cn } from "@/lib/utils";
-import type { Location } from "@payload-types";
+import type { Block, Location } from "@payload-types";
+import { GraduationCapIcon } from "lucide-react";
 import { useCallback, useState } from "react";
-
+import { useDebouncedCallback } from "use-debounce";
 interface LocationInputProps {
   id: string;
   placeholder: string;
@@ -30,14 +31,26 @@ export function LocationInput({
   const [value, setValue] = useState("");
   const [options, setOptions] = useState<Location[]>([]);
 
-  const handleSearch = useCallback(async (query: string) => {
+  const debouncedHandleSearch = useDebouncedCallback(async (query: string) => {
     if (query.length >= 1) {
       const locations = await getFirstFiveLocationsBasedOnQuery(query);
+      console.log(locations);
       setOptions(locations);
     } else {
       setOptions([]);
     }
-  }, []);
+  }, 300);
+
+  const handleInputChange = useCallback(
+    (value: string) => {
+      setValue(value);
+      debouncedHandleSearch(value);
+      if (value === "") {
+        onLocationSelect(null);
+      }
+    },
+    [debouncedHandleSearch, onLocationSelect],
+  );
 
   return (
     <Command shouldFilter={false} className={cn(className)}>
@@ -45,13 +58,7 @@ export function LocationInput({
         id={id}
         placeholder={placeholder}
         value={value}
-        onValueChange={(value) => {
-          setValue(value);
-          handleSearch(value);
-          if (value === "") {
-            onLocationSelect(null);
-          }
-        }}
+        onValueChange={handleInputChange}
         className={cn(inputClassName)}
       />
 
@@ -62,7 +69,7 @@ export function LocationInput({
 
         {options.map((locationOption) => (
           <CommandItem
-            className="first:mt-2 last:mb-2"
+            className="first:mt-2 last:mb-2 gap-4 cursor-pointer"
             key={locationOption.id}
             value={locationOption.id}
             onSelect={() => {
@@ -71,7 +78,16 @@ export function LocationInput({
               setOptions([]);
             }}
           >
-            {locationOption.name}
+            <GraduationCapIcon />
+            <div className="flex flex-col min-w-0 flex-1">
+              <h4 className="truncate text-accent-foreground">
+                {locationOption.name}
+              </h4>
+              <span className="text-xs text-muted-foreground">
+                {locationOption?.code} &middot; Bloco{" "}
+                {(locationOption?.block as unknown as Block).name}
+              </span>
+            </div>
           </CommandItem>
         ))}
       </CommandList>

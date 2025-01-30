@@ -5,7 +5,7 @@ export const MAPBOX_ACCESS_TOKEN = process.env
   .NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN as string;
 
 export const MAP_STYLES: { [key in ResolvedTheme]: string } = {
-  light: "mapbox://styles/mapbox/streets-v12",
+  light: "mapbox://styles/filipecordovil/cm6jtdxlc00z301qmbo092lqy",
   dark: "mapbox://styles/mapbox/dark-v11",
 };
 
@@ -36,6 +36,8 @@ export const MAP_LAYERS = {
   GRAPH_EDGES_LAYER_ID: "graph-edges-layer",
   USER_LOCATION_LAYER_ID: "user-location-layer",
   ROUTE_PATH_LAYER_ID: "route-path-layer",
-  CAMPUS_OUTLINE_LAYER_ID: "campus-outline-layer",
   CAMPUS_SHAPE_LAYER_ID: "campus-shape-layer",
+  CONSTRUCTIONS_SHAPE_LAYER_ID: "constructions-shape-layer",
+  STREET_SHAPE_LAYER_ID: "street-shape-layer",
+  CONSTRUCTION_LABEL_LAYER_ID: "construction-label-layer",
 };
