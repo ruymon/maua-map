@@ -1,6 +1,6 @@
 "use client";
 
-import { Location } from "@payload-types";
+import type { Location } from "@payload-types";
 import { useRouter } from "next/navigation";
 import { LocationInput } from "./location-input";
 

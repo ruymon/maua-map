@@ -4,12 +4,11 @@
 import { MAP_STYLES, MAPBOX_ACCESS_TOKEN } from "@/config/map";
 import { EdgeReturn } from "@/lib/edges";
 import { getMapCursor } from "@/lib/map/core";
-import { BuildingLabelsLayer } from "@/lib/map/layers/building-labels-layer";
-import { CampusOutlineLayer } from "@/lib/map/layers/campus-outline-layer";
+import { BlueprintOutlineLayer } from "@/lib/map/layers/blueprint-outline-layer";
 import { CampusShapeLayer } from "@/lib/map/layers/campus-shape-layer";
-import { EdgesLayer } from "@/lib/map/layers/edges-layer";
-import { NodesLayer } from "@/lib/map/layers/nodes-layer";
+import { ConstructionsLayer } from "@/lib/map/layers/constructions-layer";
 import { RoutePathLayer } from "@/lib/map/layers/route-path-layer";
+import { StreetShapeLayer } from "@/lib/map/layers/street-shape-layer";
 import { UserGeoLocationLayer } from "@/lib/map/layers/user-geolocation-layer";
 import { getTooltipContentBasedOnLayer } from "@/lib/map/tooltip";
 import { useMapViewStateStore } from "@/stores/map-view-state-store";
@@ -38,10 +37,11 @@ export function Map({ children, nodesData, edgesData }: MapProps) {
 
   const mapLayers = [
     CampusShapeLayer(),
-    CampusOutlineLayer(),
-    NodesLayer(nodesData),
-    EdgesLayer(edgesData),
-    BuildingLabelsLayer(),
+    StreetShapeLayer(),
+    ConstructionsLayer(),
+    BlueprintOutlineLayer(),
+    // NodesLayer(nodesData),
+    // EdgesLayer(edgesData),
     RoutePathLayer(),
     UserGeoLocationLayer(),
   ];
