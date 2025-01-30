@@ -4,7 +4,7 @@ import { GeoJsonLayer } from "deck.gl";
 
 export function StreetShapeLayer() {
   const geoJsonUrl =
-    "https://raw.githubusercontent.com/ruymon/maua-map-data/584b1affe93ea99407523cf44128c5d22d186ae6/map-layers/street-shape.geojson";
+    "https://raw.githubusercontent.com/ruymon/maua-map-data/refs/heads/main/map-layers/street-shape.geojson";
 
   return new GeoJsonLayer({
     id: MAP_LAYERS.STREET_SHAPE_LAYER_ID,
