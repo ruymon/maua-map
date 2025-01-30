@@ -31,7 +31,7 @@ const constructionTypeStyleVariants = {
 
 export function ConstructionsLayer() {
   const geoJsonUrl =
-    "https://raw.githubusercontent.com/ruymon/maua-map-data/584b1affe93ea99407523cf44128c5d22d186ae6/map-layers/constructions-shape.geojson";
+    "https://raw.githubusercontent.com/ruymon/maua-map-data/refs/heads/main/map-layers/constructions-shape.geojson";
 
   return new LabeledGeoJsonLayer<ConstructionsProperties>({
     id: MAP_LAYERS.CONSTRUCTIONS_SHAPE_LAYER_ID,
