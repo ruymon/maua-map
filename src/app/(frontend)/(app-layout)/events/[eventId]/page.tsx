@@ -13,7 +13,7 @@ import { EventActivityCard } from "./_components/event-activity-card";
  * Next.js will invalidate the cache when a request comes in, at most once every 24 hours.
  * @see https://nextjs.org/docs/app/building-your-application/data-fetching/incremental-static-regeneration
  */
-export const revalidate = 60 * 60 * 24; // 24 hours
+export const revalidate = 86400; // 24 hours
 
 export const dynamicParams = true;
 
