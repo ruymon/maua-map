@@ -16,7 +16,11 @@ export function EventCard({
   const { url, description: bannerDescription, filename } = banner as Media;
   const bannerUrl = `${BASE_URL}${url}`;
 
-  const eventDate = startTime && timestampToDayAndMonth(startTime);
+  const eventStartDate = startTime && timestampToDayAndMonth(startTime);
+  const eventEndDate = endTime && timestampToDayAndMonth(endTime);
+
+  const isEventInSameDay = eventStartDate === eventEndDate;
+
   const eventStartTime = startTime && timestampToShotTime(startTime);
   const eventEndTime = endTime && timestampToShotTime(endTime);
 
@@ -50,16 +54,18 @@ export function EventCard({
           <div className="flex gap-1 items-center">
             <CalendarIcon className="w-4 h-4 text-muted-foreground" />
             <span className="text-muted-foreground font-medium text-sm">
-              {eventDate}
+              {eventStartDate} {isEventInSameDay ? "" : `a ${eventEndDate}`}
             </span>
           </div>
 
-          <div className="flex gap-1 items-center">
-            <ClockIcon className="w-4 h-4 text-muted-foreground" />
-            <span className="text-muted-foreground font-medium text-sm">
-              {eventStartTime} - {eventEndTime}
-            </span>
-          </div>
+          {isEventInSameDay && (
+            <div className="flex gap-1 items-center">
+              <ClockIcon className="w-4 h-4 text-muted-foreground" />
+              <span className="text-muted-foreground font-medium text-sm">
+                {eventStartTime} - {eventEndTime}
+              </span>
+            </div>
+          )}
         </div>
       </div>
     </Link>
