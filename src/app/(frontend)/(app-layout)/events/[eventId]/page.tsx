@@ -37,6 +37,7 @@ export default async function EventDetailsPage({
   const data = await payload.findByID({
     collection: "events",
     id: eventId,
+    disableErrors: true, // This enables the function to return null instead of throwing an error
   });
 
   if (!data) {
