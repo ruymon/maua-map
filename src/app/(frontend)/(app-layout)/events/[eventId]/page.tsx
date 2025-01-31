@@ -10,10 +10,10 @@ import { BannerBlurBackdrop } from "./_components/banner-blur-backdrop";
 import { EventActivityCard } from "./_components/event-activity-card";
 
 /**
- * Next.js will invalidate the cache when a request comes in, at most once every 60 seconds.
+ * Next.js will invalidate the cache when a request comes in, at most once every 24 hours.
  * @see https://nextjs.org/docs/app/building-your-application/data-fetching/incremental-static-regeneration
  */
-export const revalidate = 60;
+export const revalidate = 86400; // 24 hours
 
 export const dynamicParams = true;
 
@@ -62,7 +62,7 @@ export default async function EventDetailsPage({
             draggable={false}
             width={banner.width ?? 500}
             height={banner.height ?? 500}
-            className="rounded-lg w-full max-h-36 md:max-h-none object-cover"
+            className="rounded-lg w-full max-h-36 md:max-h-48 object-cover"
           />
 
           <header className="flex flex-col gap-1">
