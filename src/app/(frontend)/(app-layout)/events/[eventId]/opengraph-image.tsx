@@ -1,4 +1,7 @@
 import config from "@payload-config";
+import { format, parseISO } from "date-fns";
+import { toZonedTime } from "date-fns-tz";
+import { ptBR } from "date-fns/locale";
 import { ImageResponse } from "next/og";
 import { getPayload } from "payload";
 
@@ -27,23 +30,32 @@ export default async function Image({
     return new Response("Event not found", { status: 404 });
   }
 
-  // const eventStartDate =
-  //   event.startTime && timestampToDayAndMonth(event.startTime);
-  // const eventEndDate = event.endTime && timestampToDayAndMonth(event.endTime);
+  function timestampToDayAndMonth(date: string) {
+    return format(
+      toZonedTime(parseISO(date), "America/Sao_Paulo"),
+      "d 'de' MMMM 'de' yyyy",
+      {
+        locale: ptBR,
+      },
+    );
+  }
 
-  // const isEventInSameDay = eventStartDate === eventEndDate;
+  const eventStartDate =
+    event.startTime && timestampToDayAndMonth(event.startTime);
+  const eventEndDate = event.endTime && timestampToDayAndMonth(event.endTime);
+
+  const isEventInSameDay = eventStartDate === eventEndDate;
 
   return new ImageResponse(
     (
-      <div tw="flex flex-col w-full justify-between h-full bg-zinc-100 p-12">
+      <div tw="flex flex-col w-full justify-between h-full bg-zinc-50 p-12">
         <div tw="text-2xl font-bold text-zinc-800">Mauá Map</div>
         <div tw="flex flex-col gap-16">
-          <header tw="flex flex-col gap-4 text-balance">
-            <span tw="rounded-full px-3 py-1 bg-zinc-900 font-medium text-zinc-50 w-fit">
-              {/* {isEventInSameDay
+          <header tw="flex flex-col gap-4 text-balance items-start">
+            <span tw="rounded-full px-3 py-1 bg-zinc-900 font-medium text-zinc-50">
+              {isEventInSameDay
                 ? eventStartDate
-                : `${eventStartDate} - ${eventEndDate}`} */}
-              Evento
+                : `${eventStartDate} - ${eventEndDate}`}
             </span>
             <h1 tw="text-6xl font-bold overflow-hidden line-clamp-4 text-ellipsis text-zinc-900">
               {event.name}
