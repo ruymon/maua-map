@@ -14,6 +14,8 @@ const fontSans = Roboto({
 export const metadata: Metadata = {
   title: "Mauá Map",
   description: "Mapa virtual do Instituto Mauá de Tecnologia",
+  viewport:
+    "width=device-width, minimal-ui, initial-scale=1.0, maximum-scale=1.0, user-scalable=0",
 };
 
 export default function RootLayout({
@@ -25,7 +27,7 @@ export default function RootLayout({
     <html lang="pt-BR" suppressHydrationWarning>
       <body
         className={cn(
-          "min-h-screen antialiased w-full marker:whitespace-pre-line bg-background text-foreground",
+          "min-h-svh antialiased w-full marker:whitespace-pre-line bg-background text-foreground",
           fontSans.className,
         )}
       >
