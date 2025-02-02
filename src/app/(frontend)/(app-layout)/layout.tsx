@@ -11,7 +11,7 @@ export default function MapLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="relative flex h-screen w-full flex-col-reverse justify-end md:flex-row md:justify-normal">
+    <div className="relative flex h-screen overflow-clip w-full flex-col-reverse justify-end md:flex-row md:justify-normal">
       <Sidebar />
       <MobileNavbar />
       <div className="flex-1 flex relative flex-col justify-end md:flex-row md:justify-normal">
