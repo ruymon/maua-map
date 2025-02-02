@@ -1,44 +1,65 @@
+import { timestampToDayAndMonth } from "@/lib/time";
 import config from "@payload-config";
 import { ImageResponse } from "next/og";
 import { getPayload } from "payload";
 
-export const alt = "About Acme";
+export const runtime = "edge";
+
+export const alt = "Event Details";
 export const size = {
   width: 1200,
   height: 630,
 };
 export const contentType = "image/png";
 
-interface ImageProps {
-  params: {
-    eventId: string;
-  };
-}
-
-export default async function Image({ params }: ImageProps) {
+export default async function Image({
+  params,
+}: {
+  params: { eventId: string };
+}) {
   const { eventId } = params;
-  const payload = await getPayload({ config });
 
+  const payload = await getPayload({ config });
   const event = await payload.findByID({
     collection: "events",
     id: eventId,
-    disableErrors: true, // This enables the function to return null instead of throwing an error
+    disableErrors: true,
   });
+
+  if (!event) {
+    return new Response("Event not found", { status: 404 });
+  }
+
+  const eventStartDate =
+    event.startTime && timestampToDayAndMonth(event.startTime);
+  const eventEndDate = event.endTime && timestampToDayAndMonth(event.endTime);
+
+  const isEventInSameDay = eventStartDate === eventEndDate;
 
   return new ImageResponse(
     (
-      <div
-        style={{
-          fontSize: 48,
-          background: "white",
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        {event?.name}
+      <div tw="flex flex-col w-full justify-between h-full bg-zinc-100 p-12">
+        <div tw="text-2xl font-bold text-zinc-800">Mauá Map</div>
+        <div tw="flex flex-col gap-16">
+          <header tw="flex flex-col gap-4 text-balance">
+            <span tw="rounded-full px-3 py-1 bg-zinc-900 font-medium text-zinc-50 w-fit">
+              {isEventInSameDay
+                ? eventStartDate
+                : `${eventStartDate} - ${eventEndDate}`}
+            </span>
+            <h1 tw="text-6xl font-bold overflow-hidden line-clamp-4 text-ellipsis text-zinc-900">
+              {event.name}
+            </h1>
+            <p tw="text-xl overflow-hidden text-ellipsis line-clamp-3 text-zinc-700">
+              {event.description}
+            </p>
+          </header>
+
+          <footer tw="flex w-full justify-between">
+            <p tw="text-lg text-zinc-500">Instituto Mauá de Tecnologia</p>
+            <p tw="text-lg font-semibold text-zinc-800">maua-map.vercel.app</p>
+          </footer>
+        </div>
       </div>
     ),
     {
