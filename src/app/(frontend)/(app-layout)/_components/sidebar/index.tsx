@@ -6,7 +6,7 @@ import { SidebarThemeSwitcher } from "./sidebar-theme-switcher";
 
 export function Sidebar() {
   return (
-    <aside className=" z-30 hidden h-screen max-h-screen w-14 bg-sidebar md:flex flex-col items-center">
+    <aside className=" z-30 hidden h-svh w-14 bg-sidebar md:flex flex-col items-center">
       <div className="flex flex-1 flex-col gap-4 py-2 px-4">
         <header className="flex flex-col mx-auto  gap-2">
           <MauaIcon className="w-10 text-primary rounded" />

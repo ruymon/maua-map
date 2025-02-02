@@ -94,7 +94,7 @@ export function PageShell({
       )}
     >
       {!hideTopNav && (
-        <header className="sticky top-0 z-20 min-h-10 flex items-center justify-between px-6 py-1.5 text-muted-foreground backdrop-blur-xl bg-background/20">
+        <header className="sticky top-0 z-20 min-h-10 flex items-center justify-between px-6 py-1.5 text-muted-foreground backdrop-blur-xl bg-background/40">
           <span className="text-xs">{shellTitle}</span>
           <nav className="flex items-center gap-0.5">
             <Link
