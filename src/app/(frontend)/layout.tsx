@@ -12,7 +12,10 @@ const fontSans = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "Mauá Map",
+  title: {
+    template: "%s | Mauá Map",
+    default: "Mauá Map",
+  },
   description: "Mapa virtual do Instituto Mauá de Tecnologia",
   viewport:
     "width=device-width, minimal-ui, initial-scale=1.0, maximum-scale=1.0, user-scalable=0",

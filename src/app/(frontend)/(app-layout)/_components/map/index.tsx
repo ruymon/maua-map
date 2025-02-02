@@ -2,7 +2,7 @@
 "use client";
 
 import { MAP_STYLES, MAPBOX_ACCESS_TOKEN } from "@/config/map";
-import { EdgeReturn } from "@/lib/edges";
+import { EdgeReturn } from "@/data/edges";
 import { getMapCursor } from "@/lib/map/core";
 import { BlueprintOutlineLayer } from "@/lib/map/layers/blueprint-outline-layer";
 import { CampusShapeLayer } from "@/lib/map/layers/campus-shape-layer";
@@ -20,6 +20,7 @@ import { useTheme } from "next-themes";
 import { ReactNode, useState } from "react";
 import BaseMap from "react-map-gl";
 import { MapSkeleton } from "./map-skeleton";
+
 if (!MAPBOX_ACCESS_TOKEN) {
   throw new Error("NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN is not set");
 }

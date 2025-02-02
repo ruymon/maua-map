@@ -1,11 +1,26 @@
-import config from "@payload-config";
+import { getLocationById } from "@/data/locations";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getPayload } from "payload";
+
+export const revalidate = 3600; // 1 hour
+export const dynamicParams = true;
 
 interface LocationDetailsPageProps {
   params: Promise<{
     locationId: string;
   }>;
+}
+
+export async function generateMetadata({
+  params,
+}: LocationDetailsPageProps): Promise<Metadata> {
+  const { locationId } = await params;
+  const locationData = await getLocationById(locationId);
+
+  return {
+    title: locationData?.name,
+    description: `Confira informações sobre o local ${locationData?.name} e trace a rota para chegar até lá.`,
+  };
 }
 
 export default async function LocationDetailsPage({
@@ -17,19 +32,18 @@ export default async function LocationDetailsPage({
     notFound();
   }
 
-  const payload = await getPayload({ config });
+  const locationData = await getLocationById(locationId);
 
-  const data = await payload.findByID({
-    collection: "locations",
-    id: locationId,
-  });
+  if (!locationData) {
+    notFound();
+  }
 
   return (
     <div className="flex flex-1 flex-col gap-8 z-0">
       <div className="flex flex-col gap-6">
         <header className="flex flex-col gap-1">
           <h1 className="text-secondary-foreground text-2xl md:text-3xl font-bold">
-            {data.name}
+            {locationData.name}
           </h1>
           <span className="text-muted-foreground">SDDASd</span>
         </header>

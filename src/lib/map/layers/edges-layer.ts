@@ -1,6 +1,6 @@
 import { MAP_LAYERS } from "@/config/map";
+import { EdgeReturn } from "@/data/edges";
 import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
-import { EdgeReturn } from "@/lib/edges";
 import { hexToRGBArray } from "@/lib/utils";
 import { useMapLayersStore } from "@/stores/map-layers-store";
 import { Edge } from "@payload-types";

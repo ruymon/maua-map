@@ -1,18 +1,31 @@
+import "server-only";
+
 import config from "@payload-config";
 import { Node } from "@payload-types";
 import { sql } from "@payloadcms/db-postgres";
+import { unstable_cache } from "next/cache";
 import { getPayload } from "payload";
 
 export async function getAllNodes(): Promise<Node[]> {
-  const payload = await getPayload({ config });
+  const getCachedNodes = unstable_cache(
+    async () => {
+      const payload = await getPayload({ config });
 
-  const { docs: nodes } = await payload.find({
-    collection: "nodes",
-    depth: 1,
-    pagination: false,
-  });
+      const { docs: nodes } = await payload.find({
+        collection: "nodes",
+        depth: 1,
+        pagination: false,
+      });
 
-  return nodes;
+      return nodes;
+    },
+    ["all-nodes"],
+    {
+      revalidate: 3600, // Cache for 1 hour
+      tags: ["nodes"],
+    },
+  );
+  return getCachedNodes();
 }
 
 type DbNode = {

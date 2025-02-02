@@ -1,5 +1,5 @@
 import { Node } from "@payload-types";
-import { EdgeReturn } from "./edges";
+import { EdgeReturn } from "../data/edges";
 
 function heuristic(node: Node, goal: Node): number {
   const [x1, y1] = node.coordinates;

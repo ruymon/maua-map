@@ -1,8 +1,8 @@
 "use server";
 
+import { getAllEdges } from "@/data/edges";
+import { findNearestNode } from "@/data/nodes";
 import { aStar } from "@/lib/astar";
-import { getAllEdges } from "@/lib/edges";
-import { findNearestNode } from "@/lib/nodes";
 
 export async function getPathAction(
   startCoordinates: [number, number],

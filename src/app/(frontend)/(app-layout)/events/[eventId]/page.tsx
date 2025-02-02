@@ -1,25 +1,32 @@
 import { Media } from "@/../payload-types";
 import { BASE_URL } from "@/constants/url";
+import { getEventById } from "@/data/events";
 import { timestampToDayAndMonth, timestampToShotTime } from "@/lib/time";
-import config from "@payload-config";
 import { CalendarIcon, ClockIcon } from "lucide-react";
+import { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { getPayload } from "payload";
 import { EventActivityCard } from "./_components/event-activity-card";
 
-/**
- * Next.js will invalidate the cache when a request comes in, at most once every 24 hours.
- * @see https://nextjs.org/docs/app/building-your-application/data-fetching/incremental-static-regeneration
- */
-export const revalidate = 86400; // 24 hours
-
+export const revalidate = 3600; // 1 hour
 export const dynamicParams = true;
 
 interface EventDetailsPageProps {
   params: Promise<{
     eventId: string;
   }>;
+}
+
+export async function generateMetadata({
+  params,
+}: EventDetailsPageProps): Promise<Metadata> {
+  const { eventId } = await params;
+  const eventData = await getEventById(eventId);
+
+  return {
+    title: eventData?.name,
+    description: `Confira o evento ${eventData?.name} e participe das atividades disponíveis.`,
+  };
 }
 
 export default async function EventDetailsPage({
@@ -31,26 +38,23 @@ export default async function EventDetailsPage({
     notFound();
   }
 
-  const payload = await getPayload({ config });
+  const eventData = await getEventById(eventId);
 
-  const data = await payload.findByID({
-    collection: "events",
-    id: eventId,
-    disableErrors: true, // This enables the function to return null instead of throwing an error
-  });
-
-  if (!data) {
+  if (!eventData) {
     notFound();
   }
 
-  const banner = data.banner as Media;
+  const banner = eventData.banner as Media;
   const bannerUrl = `${BASE_URL}${banner.url}`;
 
-  const eventDate = data.startTime && timestampToDayAndMonth(data.startTime);
-  const eventStartTime = data.startTime && timestampToShotTime(data.startTime);
-  const eventEndTime = data.endTime && timestampToShotTime(data.endTime);
+  const eventDate =
+    eventData.startTime && timestampToDayAndMonth(eventData.startTime);
+  const eventStartTime =
+    eventData.startTime && timestampToShotTime(eventData.startTime);
+  const eventEndTime =
+    eventData.endTime && timestampToShotTime(eventData.endTime);
 
-  const isEventActivitiesEmpty = data.activities?.length === 0;
+  const isEventActivitiesEmpty = eventData.activities?.length === 0;
 
   return (
     <div className="flex flex-1 flex-col gap-8">
@@ -66,9 +70,9 @@ export default async function EventDetailsPage({
 
         <header className="flex flex-col gap-1">
           <h1 className="text-secondary-foreground text-2xl md:text-3xl font-bold">
-            {data.name}
+            {eventData.name}
           </h1>
-          <span className="text-muted-foreground">{data.description}</span>
+          <span className="text-muted-foreground">{eventData.description}</span>
         </header>
 
         <div className="flex flex-col gap-4">
@@ -110,7 +114,7 @@ export default async function EventDetailsPage({
           </header>
 
           <div className="flex flex-col gap-2">
-            {data.activities?.map((activity) => (
+            {eventData.activities?.map((activity) => (
               <EventActivityCard key={activity.id} {...activity} />
             ))}
           </div>
