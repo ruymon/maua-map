@@ -1,25 +1,12 @@
-"use client";
-
-import type { Location } from "@payload-types";
-import { useRouter } from "next/navigation";
 import { LocationInput } from "./location-input";
 
 export function Searchbar() {
-  const router = useRouter();
-  const handleSearch = (selectedLocation: Location | null) => {
-    if (!selectedLocation) {
-      return;
-    }
-    router.push(`/location/${selectedLocation.id}`);
-  };
-
   return (
     <LocationInput
       inputClassName="h-auto"
-      className="absolute top-4 left-4 z-10 max-w-sm mx-auto h-auto rounded-3xl border shadow-sm"
+      className="absolute md:top-4 inset-x-1/2 md:inset-x-auto md:translate-x-0 -translate-x-1/2 bottom-2 md:bottom-auto w-11/12 md:left-4 z-10 md:max-w-sm md:mx-auto h-auto rounded-3xl border shadow-sm"
       id="searchbar"
       placeholder="Pesquisar por ponto de interesse"
-      onLocationSelect={handleSearch}
     />
   );
 }
