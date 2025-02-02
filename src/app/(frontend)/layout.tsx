@@ -17,6 +17,18 @@ export const metadata: Metadata = {
     default: "Mauá Map",
   },
   description: "Mapa virtual do Instituto Mauá de Tecnologia",
+  icons: [
+    {
+      rel: "icon",
+      url: "/icon-black.png",
+      media: "(prefers-color-scheme: light)",
+    },
+    {
+      rel: "icon",
+      url: "/icon-white.png",
+      media: "(prefers-color-scheme: dark)",
+    },
+  ],
 };
 
 export const viewport: Viewport = {
