@@ -8,5 +8,5 @@ interface LocationPanelLayoutProps {
 export default function LocationPanelLayout({
   children,
 }: LocationPanelLayoutProps) {
-  return <PageShell>{children}</PageShell>;
+  return <PageShell shellTitle="Localidades">{children}</PageShell>;
 }

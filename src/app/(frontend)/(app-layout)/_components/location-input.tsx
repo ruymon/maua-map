@@ -11,12 +11,12 @@ import { getFirstFiveLocationsBasedOnQuery } from "@/lib/locations";
 import { cn } from "@/lib/utils";
 import type { Block, Location } from "@payload-types";
 import { GraduationCapIcon } from "lucide-react";
+import Link from "next/link";
 import { useCallback, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 interface LocationInputProps {
   id: string;
   placeholder: string;
-  onLocationSelect: (location: Location | null) => void;
   className?: string;
   inputClassName?: string;
 }
@@ -24,7 +24,6 @@ interface LocationInputProps {
 export function LocationInput({
   id,
   placeholder,
-  onLocationSelect,
   className,
   inputClassName,
 }: LocationInputProps) {
@@ -45,11 +44,8 @@ export function LocationInput({
     (value: string) => {
       setValue(value);
       debouncedHandleSearch(value);
-      if (value === "") {
-        onLocationSelect(null);
-      }
     },
-    [debouncedHandleSearch, onLocationSelect],
+    [debouncedHandleSearch],
   );
 
   return (
@@ -68,27 +64,30 @@ export function LocationInput({
         )}
 
         {options.map((locationOption) => (
-          <CommandItem
-            className="first:mt-2 last:mb-2 gap-4 cursor-pointer"
+          <Link
             key={locationOption.id}
-            value={locationOption.id}
-            onSelect={() => {
-              setValue(locationOption.name);
-              onLocationSelect(locationOption);
-              setOptions([]);
-            }}
+            href={`/locations/${locationOption.id}`}
           >
-            <GraduationCapIcon />
-            <div className="flex flex-col min-w-0 flex-1">
-              <h4 className="truncate text-accent-foreground">
-                {locationOption.name}
-              </h4>
-              <span className="text-xs text-muted-foreground">
-                {locationOption?.code} &middot; Bloco{" "}
-                {(locationOption?.block as unknown as Block).name}
-              </span>
-            </div>
-          </CommandItem>
+            <CommandItem
+              className="first:mt-2 last:mb-2 gap-4 cursor-pointer"
+              value={locationOption.id}
+              onSelect={() => {
+                setValue(locationOption.name);
+                setOptions([]);
+              }}
+            >
+              <GraduationCapIcon />
+              <div className="flex flex-col min-w-0 flex-1">
+                <h4 className="truncate text-accent-foreground">
+                  {locationOption.name}
+                </h4>
+                <span className="text-xs text-muted-foreground">
+                  {locationOption?.code} &middot; Bloco{" "}
+                  {(locationOption?.block as unknown as Block).name}
+                </span>
+              </div>
+            </CommandItem>
+          </Link>
         ))}
       </CommandList>
     </Command>

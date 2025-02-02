@@ -10,9 +10,5 @@ interface EventsPanelLayoutProps {
 export default function EventsPanelLayout({
   children,
 }: EventsPanelLayoutProps) {
-  return (
-    <PageShell shellTitle="Eventos" shellClassName="relative">
-      {children}
-    </PageShell>
-  );
+  return <PageShell shellTitle="Eventos">{children}</PageShell>;
 }
