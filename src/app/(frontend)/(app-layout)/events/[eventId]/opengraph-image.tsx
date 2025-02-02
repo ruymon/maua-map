@@ -1,9 +1,6 @@
-import { timestampToDayAndMonth } from "@/lib/time";
 import config from "@payload-config";
 import { ImageResponse } from "next/og";
 import { getPayload } from "payload";
-
-export const runtime = "edge";
 
 export const alt = "Event Details";
 export const size = {
@@ -30,11 +27,11 @@ export default async function Image({
     return new Response("Event not found", { status: 404 });
   }
 
-  const eventStartDate =
-    event.startTime && timestampToDayAndMonth(event.startTime);
-  const eventEndDate = event.endTime && timestampToDayAndMonth(event.endTime);
+  // const eventStartDate =
+  //   event.startTime && timestampToDayAndMonth(event.startTime);
+  // const eventEndDate = event.endTime && timestampToDayAndMonth(event.endTime);
 
-  const isEventInSameDay = eventStartDate === eventEndDate;
+  // const isEventInSameDay = eventStartDate === eventEndDate;
 
   return new ImageResponse(
     (
@@ -43,9 +40,10 @@ export default async function Image({
         <div tw="flex flex-col gap-16">
           <header tw="flex flex-col gap-4 text-balance">
             <span tw="rounded-full px-3 py-1 bg-zinc-900 font-medium text-zinc-50 w-fit">
-              {isEventInSameDay
+              {/* {isEventInSameDay
                 ? eventStartDate
-                : `${eventStartDate} - ${eventEndDate}`}
+                : `${eventStartDate} - ${eventEndDate}`} */}
+              Evento
             </span>
             <h1 tw="text-6xl font-bold overflow-hidden line-clamp-4 text-ellipsis text-zinc-900">
               {event.name}
