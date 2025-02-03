@@ -1,6 +1,5 @@
 "use client";
 
-import { useOnlineStore } from "@/stores/online-store";
 import { useUserGeolocationStore } from "@/stores/user-geolocation-store";
 import { useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
@@ -9,7 +8,6 @@ export function UserGeoLocationTracker() {
   const { setLocation, setError, error } = useUserGeolocationStore();
   const [permissionState, setPermissionState] =
     useState<PermissionState | null>(null);
-  const { isOnline } = useOnlineStore();
 
   const options = useMemo(
     () => ({
@@ -55,11 +53,6 @@ export function UserGeoLocationTracker() {
   }, [options, setLocation, setError]);
 
   useEffect(() => {
-    if (!isOnline)
-      toast.warning(
-        "Você está offline. A localização pode não ser atualizada.",
-      );
-
     if (permissionState !== "granted")
       toast.error(
         "Permissão de localização não concedida. Algumas funcionalidades podem não estar disponíveis.",
@@ -69,7 +62,7 @@ export function UserGeoLocationTracker() {
       toast.error(`Erro ao obter localização: ${error.message}`);
       console.error("Geolocation error:", error);
     }
-  }, [permissionState, isOnline, error]);
+  }, [permissionState, error]);
 
   return null;
 }

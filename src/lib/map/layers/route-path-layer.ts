@@ -2,8 +2,8 @@ import { MAP_LAYERS } from "@/config/map";
 import { hexToRGBArray } from "@/lib/utils";
 import { useRoutePathStore } from "@/stores/use-route-path-store";
 import { useUserGeolocationStore } from "@/stores/user-geolocation-store";
-import { PathLayer } from "deck.gl";
-import { rose } from "tailwindcss/colors";
+import { TripsLayer } from "deck.gl";
+import { blue } from "tailwindcss/colors";
 
 export function RoutePathLayer() {
   const { path } = useRoutePathStore();
@@ -24,14 +24,13 @@ export function RoutePathLayer() {
     coordinates = [userPosition, ...coordinates];
   }
 
-  return new PathLayer({
+  return new TripsLayer({
     id: MAP_LAYERS.ROUTE_PATH_LAYER_ID,
     data: [{ path: coordinates }],
     getPath: (d) => d.path,
-    getColor: hexToRGBArray(rose[500]),
+    getColor: hexToRGBArray(blue[600]),
     getWidth: 2,
     capRounded: true,
     jointRounded: true,
-    pickable: true,
   });
 }

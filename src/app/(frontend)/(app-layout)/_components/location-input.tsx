@@ -10,7 +10,18 @@ import {
 import { getFirstFiveLocationsBasedOnQuery } from "@/lib/locations";
 import { cn } from "@/lib/utils";
 import type { Block, Location } from "@payload-types";
-import { GraduationCapIcon } from "lucide-react";
+import {
+  ArchiveIcon,
+  ChefHatIcon,
+  CoffeeIcon,
+  FlaskConicalIcon,
+  GraduationCapIcon,
+  LampDeskIcon,
+  LandPlotIcon,
+  LucideIcon,
+  TheaterIcon,
+  ToiletIcon,
+} from "lucide-react";
 import Link from "next/link";
 import { useCallback, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
@@ -20,6 +31,18 @@ interface LocationInputProps {
   className?: string;
   inputClassName?: string;
 }
+
+const LocationIconVariants: Record<Location["type"], LucideIcon> = {
+  auditorium: TheaterIcon,
+  classroom: GraduationCapIcon,
+  laboratory: FlaskConicalIcon,
+  office: LampDeskIcon,
+  bathroom: ToiletIcon,
+  cafeteria: CoffeeIcon,
+  restaurant: ChefHatIcon,
+  sports: LandPlotIcon,
+  storage: ArchiveIcon,
+};
 
 export function LocationInput({
   id,
@@ -63,32 +86,35 @@ export function LocationInput({
           <CommandEmpty>Nenhum resultado encontrado</CommandEmpty>
         )}
 
-        {options.map((locationOption) => (
-          <Link
-            key={locationOption.id}
-            href={`/locations/${locationOption.id}`}
-          >
-            <CommandItem
-              className="first:mt-2 last:mb-2 gap-4 cursor-pointer"
-              value={locationOption.id}
-              onSelect={() => {
-                setValue(locationOption.name);
-                setOptions([]);
-              }}
+        {options.map((locationOption) => {
+          const IconComponent = LocationIconVariants[locationOption.type];
+          return (
+            <Link
+              key={locationOption.id}
+              href={`/locations/${locationOption.id}`}
             >
-              <GraduationCapIcon />
-              <div className="flex flex-col min-w-0 flex-1">
-                <h4 className="truncate text-accent-foreground">
-                  {locationOption.name}
-                </h4>
-                <span className="text-xs text-muted-foreground">
-                  {locationOption?.code} &middot; Bloco{" "}
-                  {(locationOption?.block as unknown as Block).name}
-                </span>
-              </div>
-            </CommandItem>
-          </Link>
-        ))}
+              <CommandItem
+                className="first:mt-2 last:mb-2 gap-4 cursor-pointer"
+                value={locationOption.id}
+                onSelect={() => {
+                  setValue(locationOption.name);
+                  setOptions([]);
+                }}
+              >
+                <IconComponent className="w-6 h-6" />
+                <div className="flex flex-col min-w-0 flex-1">
+                  <h4 className="truncate text-accent-foreground">
+                    {locationOption.name}
+                  </h4>
+                  <span className="text-xs text-muted-foreground">
+                    {locationOption?.code} &middot; Bloco{" "}
+                    {(locationOption?.block as unknown as Block).name}
+                  </span>
+                </div>
+              </CommandItem>
+            </Link>
+          );
+        })}
       </CommandList>
     </Command>
   );
