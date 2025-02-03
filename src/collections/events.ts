@@ -97,6 +97,14 @@ export const EventsCollection: CollectionConfig = {
           required: true,
         },
         {
+          name: "banner",
+          type: "upload",
+          relationTo: "media",
+          label: {
+            pt: "Banner da atividade",
+          },
+        },
+        {
           name: "location",
           label: {
             pt: "Local da atividade",

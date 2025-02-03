@@ -1,7 +1,7 @@
 import { Media } from "@/../payload-types";
 import { BASE_URL } from "@/constants/url";
 import { getEventById } from "@/data/events";
-import { timestampToDayAndMonth, timestampToShotTime } from "@/lib/time";
+import { timestampToDayAndMonth, timestampToShortTime } from "@/lib/time";
 import { CalendarIcon, ClockIcon } from "lucide-react";
 import { Metadata } from "next";
 import Image from "next/image";
@@ -50,9 +50,9 @@ export default async function EventDetailsPage({
   const eventDate =
     eventData.startTime && timestampToDayAndMonth(eventData.startTime);
   const eventStartTime =
-    eventData.startTime && timestampToShotTime(eventData.startTime);
+    eventData.startTime && timestampToShortTime(eventData.startTime);
   const eventEndTime =
-    eventData.endTime && timestampToShotTime(eventData.endTime);
+    eventData.endTime && timestampToShortTime(eventData.endTime);
 
   const isEventActivitiesEmpty = eventData.activities?.length === 0;
 
@@ -103,17 +103,17 @@ export default async function EventDetailsPage({
       </div>
 
       {!isEventActivitiesEmpty && (
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-6">
           <header className="flex flex-col">
-            <h1 className="text-accent-foreground text-lg md:text-xl font-semibold">
+            <h2 className="text-accent-foreground text-lg font-medium">
               Atividades
-            </h1>
+            </h2>
             <span className="text-muted-foreground text-sm">
               Confira o cronograma de atividades desse evento.
             </span>
           </header>
 
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-4">
             {eventData.activities?.map((activity) => (
               <EventActivityCard key={activity.id} {...activity} />
             ))}

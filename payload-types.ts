@@ -18,13 +18,13 @@ export interface Config {
     block: Block;
     nodes: Node;
     edges: Edge;
-    "payload-locked-documents": PayloadLockedDocument;
-    "payload-preferences": PayloadPreference;
-    "payload-migrations": PayloadMigration;
+    'payload-locked-documents': PayloadLockedDocument;
+    'payload-preferences': PayloadPreference;
+    'payload-migrations': PayloadMigration;
   };
   collectionsJoins: {
     block: {
-      locations: "locations";
+      locations: 'locations';
     };
   };
   collectionsSelect: {
@@ -35,15 +35,9 @@ export interface Config {
     block: BlockSelect<false> | BlockSelect<true>;
     nodes: NodesSelect<false> | NodesSelect<true>;
     edges: EdgesSelect<false> | EdgesSelect<true>;
-    "payload-locked-documents":
-      | PayloadLockedDocumentsSelect<false>
-      | PayloadLockedDocumentsSelect<true>;
-    "payload-preferences":
-      | PayloadPreferencesSelect<false>
-      | PayloadPreferencesSelect<true>;
-    "payload-migrations":
-      | PayloadMigrationsSelect<false>
-      | PayloadMigrationsSelect<true>;
+    'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
+    'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
+    'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
   };
   db: {
     defaultIDType: string;
@@ -52,7 +46,7 @@ export interface Config {
   globalsSelect: {};
   locale: null;
   user: User & {
-    collection: "users";
+    collection: 'users';
   };
   jobs: {
     tasks: unknown;
@@ -110,6 +104,7 @@ export interface Event {
     | {
         name: string;
         description: string;
+        banner?: (string | null) | Media;
         location: string | Location;
         startTime?: string | null;
         endTime?: string | null;
@@ -130,15 +125,15 @@ export interface Location {
   code?: string | null;
   block: string | Block;
   type:
-    | "classroom"
-    | "laboratory"
-    | "office"
-    | "bathroom"
-    | "storage"
-    | "cafeteria"
-    | "restaurant"
-    | "sports"
-    | "auditorium";
+    | 'classroom'
+    | 'laboratory'
+    | 'office'
+    | 'bathroom'
+    | 'storage'
+    | 'cafeteria'
+    | 'restaurant'
+    | 'sports'
+    | 'auditorium';
   floor: string;
   referenceNode?: (string | null) | Node;
   updatedAt: string;
@@ -179,7 +174,7 @@ export interface Node {
  */
 export interface User {
   id: string;
-  role?: ("admin" | "user") | null;
+  role?: ('admin' | 'user') | null;
   updatedAt: string;
   createdAt: string;
   email?: string | null;
@@ -201,7 +196,7 @@ export interface Edge {
   startNode: string | Node;
   endNode: string | Node;
   cost?: number | null;
-  type?: ("crosswalk" | "path" | "staircase") | null;
+  type?: ('crosswalk' | 'path' | 'staircase') | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -213,36 +208,36 @@ export interface PayloadLockedDocument {
   id: string;
   document?:
     | ({
-        relationTo: "media";
+        relationTo: 'media';
         value: string | Media;
       } | null)
     | ({
-        relationTo: "events";
+        relationTo: 'events';
         value: string | Event;
       } | null)
     | ({
-        relationTo: "users";
+        relationTo: 'users';
         value: string | User;
       } | null)
     | ({
-        relationTo: "locations";
+        relationTo: 'locations';
         value: string | Location;
       } | null)
     | ({
-        relationTo: "block";
+        relationTo: 'block';
         value: string | Block;
       } | null)
     | ({
-        relationTo: "nodes";
+        relationTo: 'nodes';
         value: string | Node;
       } | null)
     | ({
-        relationTo: "edges";
+        relationTo: 'edges';
         value: string | Edge;
       } | null);
   globalSlug?: string | null;
   user: {
-    relationTo: "users";
+    relationTo: 'users';
     value: string | User;
   };
   updatedAt: string;
@@ -255,7 +250,7 @@ export interface PayloadLockedDocument {
 export interface PayloadPreference {
   id: string;
   user: {
-    relationTo: "users";
+    relationTo: 'users';
     value: string | User;
   };
   key?: string | null;
@@ -316,6 +311,7 @@ export interface EventsSelect<T extends boolean = true> {
     | {
         name?: T;
         description?: T;
+        banner?: T;
         location?: T;
         startTime?: T;
         endTime?: T;
@@ -428,6 +424,7 @@ export interface Auth {
   [k: string]: unknown;
 }
 
-declare module "payload" {
+
+declare module 'payload' {
   export interface GeneratedTypes extends Config {}
 }
