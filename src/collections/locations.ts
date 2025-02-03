@@ -40,6 +40,14 @@ export const LocationsCollection: CollectionConfig = {
       index: true,
     },
     {
+      name: "image",
+      label: {
+        pt: "Imagem",
+      },
+      type: "upload",
+      relationTo: "media",
+    },
+    {
       name: "code",
       label: {
         pt: "Código da Sala/local",

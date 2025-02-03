@@ -65,7 +65,7 @@ export default async function EventDetailsPage({
           draggable={false}
           width={banner.width ?? 500}
           height={banner.height ?? 500}
-          className="rounded-lg w-full max-h-36 md:max-h-48 object-cover"
+          className="rounded-xl w-full max-h-36 md:max-h-48 object-cover"
         />
 
         <header className="flex flex-col gap-1">
