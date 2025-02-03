@@ -63,13 +63,16 @@ export default async function LocationDetailsPage({
     }
 
     if (locationBlock.image) {
-      return locationBlock as Media;
+      return locationBlock.image as Media;
     }
 
     return null;
   };
 
   const bannerImage = getBannerImage(locationData);
+
+  console.log(locationData);
+  console.log(bannerImage);
 
   return (
     <div className="flex flex-1 flex-col gap-8 z-0">
