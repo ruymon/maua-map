@@ -22,7 +22,7 @@ export function EventActivityCard(activity: EventActivityCardProps) {
   const bannerUrl = banner?.url && `${BASE_URL}${banner.url}`;
 
   return (
-    <div key={activity.id} className="flex items-center gap-2">
+    <div key={activity.id} className="flex gap-2">
       <figure className="bg-muted w-24 shrink-0 h-full rounded-xl">
         {bannerUrl && (
           <Image
@@ -35,7 +35,7 @@ export function EventActivityCard(activity: EventActivityCardProps) {
         )}
       </figure>
 
-      <div className="flex flex-col gap-4 p-2">
+      <div className="flex flex-col gap-4 p-2 w-full">
         <header className="flex flex-col">
           <h3 className="font-medium text-accent-foreground">
             {activity.name}
