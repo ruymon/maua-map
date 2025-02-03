@@ -1,3 +1,4 @@
+import { BASE_URL } from "@/constants/url";
 import { getLocationById } from "@/data/locations";
 import { Block, Location, Media, Node } from "@payload-types";
 import { ImageOffIcon } from "lucide-react";
@@ -75,9 +76,9 @@ export default async function LocationDetailsPage({
       <div className="flex flex-col gap-6">
         {bannerImage ? (
           <Image
-            src={bannerImage.url!}
-            width={bannerImage.width!}
-            height={bannerImage.height!}
+            src={`${BASE_URL}${bannerImage.url}`}
+            width={bannerImage.width || 500}
+            height={bannerImage.height || 300}
             alt={bannerImage.description || `Imagem de ${locationData.name}`}
             className="rounded-xl max-h-36 md:max-h-48 w-full object-cover"
           />
