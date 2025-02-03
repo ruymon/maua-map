@@ -15,13 +15,14 @@ export async function getLocationById(
         collection: "locations",
         id,
         disableErrors: true,
+        depth: 2,
       });
       return location;
     },
     [`location-${locationId}`],
     {
       revalidate: 3600, // Cache for 1 hour
-      tags: [`location-${locationId}`],
+      tags: [`location-${locationId}`, "locations"],
     },
   );
 

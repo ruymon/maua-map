@@ -23,7 +23,7 @@ export default function EventNotFound() {
       </div>
 
       <Link
-        href="/eventos"
+        href="/events"
         className={buttonVariants({
           size: "lg",
           variant: "link",

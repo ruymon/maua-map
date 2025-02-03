@@ -122,6 +122,7 @@ export interface Location {
   id: string;
   name: string;
   normalizedName?: string | null;
+  image?: (string | null) | Media;
   code?: string | null;
   block: string | Block;
   type:
@@ -344,6 +345,7 @@ export interface UsersSelect<T extends boolean = true> {
 export interface LocationsSelect<T extends boolean = true> {
   name?: T;
   normalizedName?: T;
+  image?: T;
   code?: T;
   block?: T;
   type?: T;
