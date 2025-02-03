@@ -1,5 +1,5 @@
 import { BASE_URL } from "@/constants/url";
-import { timestampToDayAndMonth, timestampToShotTime } from "@/lib/time";
+import { timestampToDayAndMonth, timestampToShortTime } from "@/lib/time";
 import { Event, Media } from "@payload-types";
 import { CalendarIcon, ClockIcon } from "lucide-react";
 import Image from "next/image";
@@ -21,8 +21,8 @@ export function EventCard({
 
   const isEventInSameDay = eventStartDate === eventEndDate;
 
-  const eventStartTime = startTime && timestampToShotTime(startTime);
-  const eventEndTime = endTime && timestampToShotTime(endTime);
+  const eventStartTime = startTime && timestampToShortTime(startTime);
+  const eventEndTime = endTime && timestampToShortTime(endTime);
 
   return (
     <Link

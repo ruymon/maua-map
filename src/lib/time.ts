@@ -12,6 +12,6 @@ export function timestampToDayAndMonth(date: string) {
   });
 }
 
-export function timestampToShotTime(date: string): string {
+export function timestampToShortTime(date: string): string {
   return format(convertUtcToBrt(date), "HH:mm");
 }
