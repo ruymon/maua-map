@@ -56,7 +56,6 @@ export function LocationInput({
   const debouncedHandleSearch = useDebouncedCallback(async (query: string) => {
     if (query.length >= 1) {
       const locations = await getFirstFiveLocationsBasedOnQuery(query);
-      console.log(locations);
       setOptions(locations);
     } else {
       setOptions([]);
