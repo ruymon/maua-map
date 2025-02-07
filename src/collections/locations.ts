@@ -121,6 +121,7 @@ export const LocationsCollection: CollectionConfig = {
     },
     {
       name: "referenceNode",
+      required: true,
       label: {
         pt: "Nó de referência",
       },
