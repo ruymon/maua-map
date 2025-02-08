@@ -111,11 +111,11 @@ export const EventsCollection: CollectionConfig = {
           },
           type: "relationship",
           relationTo: "locations",
-          required: true,
         },
         {
           name: "startTime",
           type: "date",
+          required: true,
           label: {
             pt: "Hora de início",
           },
@@ -128,6 +128,7 @@ export const EventsCollection: CollectionConfig = {
         {
           name: "endTime",
           type: "date",
+          required: true,
           label: {
             pt: "Hora de término",
           },

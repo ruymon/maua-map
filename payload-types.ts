@@ -105,9 +105,9 @@ export interface Event {
         name: string;
         description: string;
         banner?: (string | null) | Media;
-        location: string | Location;
-        startTime?: string | null;
-        endTime?: string | null;
+        location?: (string | null) | Location;
+        startTime: string;
+        endTime: string;
         id?: string | null;
       }[]
     | null;

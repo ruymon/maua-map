@@ -1,23 +1,21 @@
 import { BASE_URL } from "@/constants/url";
+import { timestampToShortTime, timestampToTextDate } from "@/lib/time";
 import { Block, Location, Media, Node } from "@payload-types";
 import { ArrowRightIcon } from "lucide-react";
 import Image from "next/image";
 import { GoToLocationButton } from "../../../_components/go-to-location-button";
 
 interface EventActivityCardProps {
-  id?: string | null;
   name: string;
   description: string;
   banner?: (string | null) | Media;
-  location: string | Location;
-  startTime?: string | null;
-  endTime?: string | null;
+  location?: (string | null) | Location;
+  startTime: string;
+  endTime: string;
+  id?: string | null;
 }
 
 export function EventActivityCard(activity: EventActivityCardProps) {
-  const { referenceNode, name: locationName } = activity.location as Location;
-  const { coordinates } = referenceNode as Node;
-
   const banner = activity.banner as Media;
   const bannerUrl = banner?.url && `${BASE_URL}${banner.url}`;
 
@@ -45,25 +43,48 @@ export function EventActivityCard(activity: EventActivityCardProps) {
           </span>
         </header>
 
-        <div className="text-sm flex items-center justify-between">
-          <div className="flex flex-col">
-            <span className="text-accent-foreground">
-              {(activity.location as Location).name}
+        <div className="flex flex-col gap-2">
+          <div className="flex flex-col text-sm">
+            <span className="text-accent-foreground capitalize">
+              {timestampToTextDate(activity.startTime)}
             </span>
             <span className="text-muted-foreground">
-              Sala {(activity.location as Location).code} &bull; Bloco{" "}
-              {((activity.location as Location).block as Block).name}
+              {timestampToShortTime(activity.startTime)} -{" "}
+              {timestampToShortTime(activity.endTime)}
             </span>
           </div>
 
-          <GoToLocationButton
-            variant="secondary"
-            size="sm"
-            destinationCoordinates={coordinates}
-          >
-            Rota <ArrowRightIcon />
-            <span className="sr-only">Rota para o {locationName}</span>
-          </GoToLocationButton>
+          {activity.location ? (
+            <div className="text-sm flex items-center justify-between">
+              <div className="flex flex-col">
+                <span className="text-accent-foreground">
+                  {activity?.location && (activity.location as Location).name}
+                </span>
+                <span className="text-muted-foreground">
+                  Sala {(activity.location as Location).code} &bull; Bloco{" "}
+                  {((activity.location as Location).block as Block).name}
+                </span>
+              </div>
+
+              <GoToLocationButton
+                variant="secondary"
+                size="sm"
+                destinationCoordinates={
+                  ((activity.location as Location).referenceNode as Node)
+                    .coordinates
+                }
+              >
+                Rota <ArrowRightIcon />
+                <span className="sr-only">
+                  Rota para o {(activity.location as Location).name}
+                </span>
+              </GoToLocationButton>
+            </div>
+          ) : (
+            <span className="text-sm text-muted-foreground">
+              Local de acordo com inscrição
+            </span>
+          )}
         </div>
       </div>
     </div>
