@@ -7,6 +7,8 @@ import { getMapCursor } from "@/lib/map/core";
 import { BlueprintOutlineLayer } from "@/lib/map/layers/blueprint-outline-layer";
 import { CampusShapeLayer } from "@/lib/map/layers/campus-shape-layer";
 import { ConstructionsLayer } from "@/lib/map/layers/constructions-layer";
+import { EdgesLayer } from "@/lib/map/layers/edges-layer";
+import { NodesLayer } from "@/lib/map/layers/nodes-layer";
 import { RoutePathLayer } from "@/lib/map/layers/route-path-layer";
 import { StreetShapeLayer } from "@/lib/map/layers/street-shape-layer";
 import { UserGeoLocationLayer } from "@/lib/map/layers/user-geolocation-layer";
@@ -41,8 +43,8 @@ export function Map({ children, nodesData, edgesData }: MapProps) {
     StreetShapeLayer(),
     ConstructionsLayer(),
     BlueprintOutlineLayer(),
-    // NodesLayer(nodesData),
-    // EdgesLayer(edgesData),
+    NodesLayer(nodesData),
+    EdgesLayer(edgesData),
     RoutePathLayer(),
     UserGeoLocationLayer(),
   ];
