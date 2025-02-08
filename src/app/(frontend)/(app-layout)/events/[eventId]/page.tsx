@@ -47,13 +47,17 @@ export default async function EventDetailsPage({
   const banner = eventData.banner as Media;
   const bannerUrl = `${BASE_URL}${banner.url}`;
 
-  const eventDate =
+  const eventStartDate =
     eventData.startTime && timestampToDayAndMonth(eventData.startTime);
+  const eventEndDate =
+    eventData.endTime && timestampToDayAndMonth(eventData.endTime);
+
+  const isEventInSameDay = eventStartDate === eventEndDate;
+
   const eventStartTime =
     eventData.startTime && timestampToShortTime(eventData.startTime);
   const eventEndTime =
     eventData.endTime && timestampToShortTime(eventData.endTime);
-
   const isEventActivitiesEmpty = eventData.activities?.length === 0;
 
   return (
@@ -84,21 +88,25 @@ export default async function EventDetailsPage({
               </span>
             </div>
 
-            <span className="text-accent-foreground text-lg">{eventDate}</span>
-          </div>
-
-          <div className="flex flex-col">
-            <div className="flex gap-1 items-center">
-              <ClockIcon className="w-4 text-muted-foreground" />
-              <span className="text-muted-foreground font-medium">
-                Horário do evento
-              </span>
-            </div>
-
             <span className="text-accent-foreground text-lg">
-              {eventStartTime} às {eventEndTime} BRT
+              {eventStartDate} {isEventInSameDay ? "" : `a ${eventEndDate}`}
             </span>
           </div>
+
+          {isEventInSameDay && (
+            <div className="flex flex-col">
+              <div className="flex gap-1 items-center">
+                <ClockIcon className="w-4 text-muted-foreground" />
+                <span className="text-muted-foreground font-medium">
+                  Horário do evento
+                </span>
+              </div>
+
+              <span className="text-accent-foreground text-lg">
+                {eventStartTime} às {eventEndTime} BRT
+              </span>
+            </div>
+          )}
         </div>
       </div>
 

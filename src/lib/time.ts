@@ -15,3 +15,8 @@ export function timestampToDayAndMonth(date: string) {
 export function timestampToShortTime(date: string): string {
   return format(convertUtcToBrt(date), "HH:mm");
 }
+export function timestampToTextDate(date: string): string {
+  return format(convertUtcToBrt(date), "EEEE, d 'de' MMMM", {
+    locale: ptBR,
+  });
+}
