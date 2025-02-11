@@ -2,20 +2,16 @@
 "use client";
 
 import { MAP_STYLES, MAPBOX_ACCESS_TOKEN } from "@/config/map";
-import { EdgeReturn } from "@/data/edges";
 import { getMapCursor } from "@/lib/map/core";
 import { BlueprintOutlineLayer } from "@/lib/map/layers/blueprint-outline-layer";
 import { CampusShapeLayer } from "@/lib/map/layers/campus-shape-layer";
 import { ConstructionsLayer } from "@/lib/map/layers/constructions-layer";
-import { EdgesLayer } from "@/lib/map/layers/edges-layer";
-import { NodesLayer } from "@/lib/map/layers/nodes-layer";
 import { RoutePathLayer } from "@/lib/map/layers/route-path-layer";
 import { StreetShapeLayer } from "@/lib/map/layers/street-shape-layer";
 import { UserGeoLocationLayer } from "@/lib/map/layers/user-geolocation-layer";
 import { getTooltipContentBasedOnLayer } from "@/lib/map/tooltip";
 import { useMapViewStateStore } from "@/stores/map-view-state-store";
 import { ResolvedTheme } from "@/types/themes";
-import { Node } from "@payload-types";
 import { DeckGL } from "deck.gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { useTheme } from "next-themes";
@@ -29,11 +25,11 @@ if (!MAPBOX_ACCESS_TOKEN) {
 
 interface MapProps {
   children?: ReactNode;
-  nodesData?: Node[];
-  edgesData?: EdgeReturn[];
+  // nodesData?: Node[];
+  // edgesData?: EdgeReturn[];
 }
 
-export function Map({ children, nodesData, edgesData }: MapProps) {
+export function Map({ children }: MapProps) {
   const [isMapLoading, setIsMapLoading] = useState(true);
   const { resolvedTheme } = useTheme();
   const { viewState } = useMapViewStateStore();
@@ -43,8 +39,8 @@ export function Map({ children, nodesData, edgesData }: MapProps) {
     StreetShapeLayer(),
     ConstructionsLayer(),
     BlueprintOutlineLayer(),
-    NodesLayer(nodesData),
-    EdgesLayer(edgesData),
+    // NodesLayer(nodesData),
+    // EdgesLayer(edgesData),
     RoutePathLayer(),
     UserGeoLocationLayer(),
   ];
