@@ -57,11 +57,14 @@ Mauá Map is a virtual campus map application for the Instituto Mauá de Tecnolo
 
 ## Screenshots
 
-![Campus Map Overview](link-to-campus-map-screenshot.png)
+![Campus Map Overview](.github/images/screenshot_campus_overview.png)
 _Caption: Overview of the interactive campus map_
 
-![Event Listing](link-to-event-listing-screenshot.png)
+![Event Listing](.github/images/screenshot_events_listing.png)
 _Caption: Event listing page showing upcoming campus events_
+
+![Event Details](.github/images/screenshot_event_details.png)
+_Caption: Event details page showing all activities of a given campus event_
 
 ![Room Search](link-to-room-search-screenshot.png)
 _Caption: Room search functionality with real-time results_
