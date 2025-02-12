@@ -1,5 +1,7 @@
 import { Toaster } from "@/components/ui/sonner";
 import { cn } from "@/lib/utils";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata, Viewport } from "next";
 import { Roboto } from "next/font/google";
 import { ClientProviders } from "./client-providers";
@@ -57,6 +59,8 @@ export default function PublicLayout({
       >
         <ClientProviders>{children}</ClientProviders>
         <Toaster />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
