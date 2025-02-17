@@ -1,4 +1,4 @@
-import { ResolvedTheme } from "@/types/themes";
+import { ResolvedTheme } from "@/stores/types/themes";
 import { MapViewState } from "deck.gl";
 
 export const MAPBOX_ACCESS_TOKEN = process.env

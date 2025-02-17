@@ -59,7 +59,18 @@ export function RoutePathLayer() {
       number,
       number,
     ][];
-    coordinates = [userPosition, ...remainingCoords];
+
+    if (remainingCoords.length > 0) {
+      coordinates = [userPosition, ...remainingCoords];
+    } else {
+      // User has reached the destination
+      coordinates = [userPosition, coordinates[coordinates.length - 1]];
+    }
+  }
+
+  // Ensure there are at least two points in the coordinates array
+  if (coordinates.length < 2) {
+    coordinates.push(coordinates[coordinates.length - 1]);
   }
 
   return new TripsLayer({
