@@ -11,7 +11,7 @@ import { StreetShapeLayer } from "@/lib/map/layers/street-shape-layer";
 import { UserGeoLocationLayer } from "@/lib/map/layers/user-geolocation-layer";
 import { getTooltipContentBasedOnLayer } from "@/lib/map/tooltip";
 import { useMapViewStateStore } from "@/stores/map-view-state-store";
-import { ResolvedTheme } from "@/stores/types/themes";
+import { ResolvedTheme } from "@/types/themes";
 import { DeckGL } from "deck.gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { useTheme } from "next-themes";
