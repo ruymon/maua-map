@@ -6,7 +6,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { Theme } from "@/stores/types/themes";
+import { Theme } from "@/types/themes";
 import { MoonIcon, SunIcon, SunMoonIcon } from "lucide-react";
 import { useTheme } from "next-themes";
 import { ReactNode, useEffect, useState } from "react";
