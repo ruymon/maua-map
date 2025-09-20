@@ -9,6 +9,7 @@ export async function getAllEvents(): Promise<Event[]> {
   const getCachedEvents = unstable_cache(
     async () => {
       const payload = await getPayload({ config });
+      const now = new Date().toISOString();
 
       const { docs: events } = await payload.find({
         collection: "events",
@@ -16,12 +17,12 @@ export async function getAllEvents(): Promise<Event[]> {
         where: {
           or: [
             {
-              startDate: { greater_than_equal: new Date().toISOString() },
+              startDate: { greater_than_equal: now },
             },
             {
               and: [
-                { startDate: { less_than_equal: new Date().toISOString() } },
-                { endDate: { greater_than_equal: new Date().toISOString() } },
+                { startDate: { less_than_equal: now } },
+                { endDate: { greater_than_equal: now } },
               ],
             },
           ],
@@ -33,7 +34,7 @@ export async function getAllEvents(): Promise<Event[]> {
     },
     ["events"],
     {
-      revalidate: 3600, // Cache for 1 hour
+      revalidate: 3600,
       tags: ["events"],
     },
   );
