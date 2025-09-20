@@ -13,6 +13,20 @@ export async function getAllEvents(): Promise<Event[]> {
       const { docs: events } = await payload.find({
         collection: "events",
         depth: 1,
+        where: {
+          or: [
+            {
+              startDate: { greater_than_equal: new Date().toISOString() },
+            },
+            {
+              and: [
+                { startDate: { less_than_equal: new Date().toISOString() } },
+                { endDate: { greater_than_equal: new Date().toISOString() } },
+              ],
+            },
+          ],
+        },
+        sort: "-startDate",
       });
 
       return events;
