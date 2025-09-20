@@ -15,19 +15,20 @@ export async function getAllEvents(): Promise<Event[]> {
         collection: "events",
         depth: 1,
         where: {
+          startTime: { greater_than_equal: now },
           or: [
             {
-              startDate: { greater_than_equal: now },
+              startTime: { greater_than_equal: now },
             },
             {
               and: [
-                { startDate: { less_than_equal: now } },
-                { endDate: { greater_than_equal: now } },
+                { startTime: { less_than_equal: now } },
+                { endTime: { greater_than_equal: now } },
               ],
             },
           ],
         },
-        sort: "-startDate",
+        sort: "-startTime",
       });
 
       return events;
