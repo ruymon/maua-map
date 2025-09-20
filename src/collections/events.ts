@@ -49,6 +49,7 @@ export const EventsCollection: CollectionConfig = {
       admin: {
         date: {
           pickerAppearance: "dayAndTime",
+          timeIntervals: 15,
         },
       },
     },
@@ -62,6 +63,7 @@ export const EventsCollection: CollectionConfig = {
       admin: {
         date: {
           pickerAppearance: "dayAndTime",
+          timeIntervals: 15,
         },
       },
     },
@@ -122,6 +124,7 @@ export const EventsCollection: CollectionConfig = {
           admin: {
             date: {
               pickerAppearance: "dayAndTime",
+              timeIntervals: 15,
             },
           },
         },
@@ -135,6 +138,7 @@ export const EventsCollection: CollectionConfig = {
           admin: {
             date: {
               pickerAppearance: "dayAndTime",
+              timeIntervals: 15,
             },
           },
         },
