@@ -56,10 +56,10 @@ export async function getEventById(eventId: string): Promise<Event | null> {
 
       return event;
     },
-    [`location-${eventId}`],
+    [`event-${eventId}`],
     {
       revalidate: 3600, // Cache for 1 hour
-      tags: [`location-${eventId}`],
+      tags: [`event-${eventId}`, "events"],
     },
   );
 

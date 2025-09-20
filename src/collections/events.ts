@@ -36,7 +36,7 @@ export const EventsCollection: CollectionConfig = {
       label: {
         pt: "Descrição",
       },
-      type: "text",
+      type: "textarea",
       required: true,
     },
     {
