@@ -9,25 +9,10 @@ export async function getAllEvents(): Promise<Event[]> {
   const getCachedEvents = unstable_cache(
     async () => {
       const payload = await getPayload({ config });
-      const now = new Date().toISOString();
 
       const { docs: events } = await payload.find({
         collection: "events",
         depth: 1,
-        where: {
-          startTime: { greater_than_equal: now },
-          or: [
-            {
-              startTime: { greater_than_equal: now },
-            },
-            {
-              and: [
-                { startTime: { less_than_equal: now } },
-                { endTime: { greater_than_equal: now } },
-              ],
-            },
-          ],
-        },
         sort: "-startTime",
       });
 
